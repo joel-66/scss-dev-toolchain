@@ -81,6 +81,6 @@ cssFiles: [
 
 *   **"Sync Disabled":** If you see this message, it means no `local.config.js` was found. The compiler will still work locally.
 *   **Live Injector not working:** Ensure `client-connector.js` code is loaded on your webpage and that your browser isn't blocking the WebSocket connection (check Console logs).
-```
+
 
 ---
