@@ -1,55 +1,86 @@
-# 🚀 scss-dev-toolchain
+# SCSS Dev Toolchain for WordPress
 
-A lightweight, Node.js-based development environment designed to bridge the gap between local SCSS development and a remote/networked web server. 
+A lightweight, Node.js-based development environment designed to bridge the gap between local SCSS development and networked web servers (or local setups).
 
-### The Problem
-Developing themes directly on a networked server or a specific CMS path (like WordPress) is often slow. Browser refreshing is tedious, and file-locking issues on network drives can crash standard compilers.
+## 🚀 Features
 
-### The Solution
-I built this toolchain to automate the "write-compile-sync-refresh" loop. It features:
-*   **Multi-stream SCSS Compilation:** Compiles multiple SCSS entry points simultaneously using `sass`.
-*   **WebSocket Live Injection:** Injects updated CSS directly into the browser without a page reload (via `live-injector.js`).
-*   **Debounced Network Sync:** A custom sync script that waits for the compiler to finish and handles "file-in-use" errors on network drives by using a delete-then-copy strategy.
+*   **Multi-stream SCSS Compilation:** Compiles specific SASS entry points simultaneously.
+*   **Live CSS Injection:** Updates styles in the browser instantly without reloading (via WebSockets).
+*   **Network Sync (Optional):** Automatically syncs compiled CSS to a remote server or mapped network drive, handling file-lock issues automatically.
 
----
+## 🛠️ Setup & Installation
 
-## 🛠️ Key Components
+1.  **Install Dependencies**
+    ```bash
+    npm install
+    ```
 
-### 1. Centralized Configuration (`dev.config.js`)
-One single file manages all source/destination paths. This makes it easy to add new CSS components to the project without touching the core logic.
+2.  **Create Local Config (Optional)**
+    Create a file named `local.config.js` in the root directory.
+    *   If you just want to compile locally, you can skip this.
+    *   If you want to sync to a server (e.g., a mapped network drive), add your path:
+    
+    ```javascript
+    // local.config.js
+    module.exports = {
+      // Note: Use double backslashes for Windows paths
+      serverPath: '\\\\192.168.1.100\\wp-content\\themes\\my-theme'
+    };
+    ```
 
-### 2. The Live Injector (`live-injector.js`)
-Using **WebSockets (ws)** and **Chokidar**, this script watches for changes in the compiled CSS. When a change is detected, it broadcasts the new CSS content to the browser. 
-> *Note: This requires a small snippet of client-side JS (not included) or a browser extension to receive the socket message.*
+3.  **Connecting the Live Injector**
+   To see your CSS changes instantly, the browser needs to connect to the local WebSocket server.
 
-### 3. Smart File Sync (`sync-to-server.js`)
-This is the "secret sauce" for network-based development:
-*   **Debouncing:** It waits 5 seconds after the last change before syncing. This prevents the sync from triggering while the SASS compiler is still mid-write.
-*   **Lock-Bypass:** It unlinks (deletes) the target file on the server before copying the new one to ensure network file-locks are released.
+   ### Option A: The WordPress Way (Recommended)
+   Add this to your theme's `functions.php` (or development plugin). This ensures the code only runs when debug mode is on.
 
----
+    ```php
+    if (defined('WP_DEBUG') && WP_DEBUG) {
+        add_action('wp_footer', function() {
+            ?>
+            <script>
+                // PASTE THE CONTENTS OF client-connector.js HERE
+                // (Make sure to include the closure: (function() { ... })(); )
+            </script>
+            <?php
+        });
+    }
+    ```
 
-## 📦 Installation & Usage
+   ### Option B: The Manual Way
+   Simply copy the contents of `client-connector.js` and paste it into your site's main JavaScript file or footer template.
+   
 
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-2. **Configure paths:**
-   Update `dev.config.js` with your specific local and server paths.
-3. **Run the environment:**
-   ```bash
-   npm start
-   ```
-   *This runs the compiler, the injector, and the syncer concurrently.*
+## 🏃‍♂️ Running the Project
 
----
+Run the main development command:
 
-## 💻 Tech Stack
-*   **Node.js**: Runtime environment.
-*   **SASS**: CSS Preprocessing.
-*   **Chokidar**: High-performance file watching.
-*   **WebSockets (WS)**: Real-time browser communication.
-*   **Concurrently**: Managing multiple parallel processes.
+```bash
+npm start
+```
+
+This will launch three concurrent processes:
+1.  **SASS Watcher:** Compiles `.scss` files on change.
+2.  **Live Injector:** Broadcasts changes to the connected browser.
+3.  **Sync Watcher:** Copies files to the `serverPath` (if configured).
+
+## 📂 Configuration
+
+**`dev.config.js`** controls which files are compiled. To add a new SCSS file:
+
+```javascript
+cssFiles: [
+  {
+    source: 'assets/scss/new-page.scss', 
+    destination: './inc/css/new-page.css' 
+  }
+]
+```
+
+## ⚠️ Troubleshooting
+
+*   **"Sync Disabled":** If you see this message, it means no `local.config.js` was found. The compiler will still work locally.
+*   **Live Injector not working:** Ensure `client-connector.js` code is loaded on your webpage and that your browser isn't blocking the WebSocket connection (check Console logs).
+```
 
 ---

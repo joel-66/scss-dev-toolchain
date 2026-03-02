@@ -4,6 +4,24 @@ const fs = require('fs');
 const path = require('path');
 const config = require('./dev.config.js');
 
+// --- 1. Check if Sync is Enabled ---
+if (!config.serverPath) {
+    console.log('⚠ [SYNC] No server path configured in local.config.js.');
+    console.log('⚠ [SYNC] Sync mode is DISABLED. (This is fine, just running locally)');
+    // We keep the process alive with a dummy interval so 'concurrently' doesn't think it failed
+    setInterval(() => {}, 1000 * 60 * 60); 
+    return;
+}
+
+// --- 2. Check if Path Exists ---
+if (!fs.existsSync(config.serverPath)) {
+    console.error(`❌ [SYNC] Configured path not found: ${config.serverPath}`);
+    console.error(`❌ [SYNC] Please check your VPN or network connection.`);
+    // Keep alive to prevent full crash
+    setInterval(() => {}, 1000 * 60 * 60);
+    return;
+}
+
 // --- Configuration ---
 const sourceDir = __dirname;
 const destDir = config.serverPath;
