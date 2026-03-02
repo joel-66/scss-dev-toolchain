@@ -1,0 +1,424 @@
+// assets/scss/style/_footer.scss
+// VERSION: 1.1 - Replaced .ast-container, added styles for .footer-container and mobile-only accordions.
+
+/*=========================
+* FOOTER
+* =========================
+*/
+
+.custom-site-footer {
+    margin-top: 60px;
+    background-color: #3fa46b;
+    color: #ffffff;
+    padding: 25px 0 0 0; // Use container for horizontal padding
+    font-size: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+// New container to replace Astra's .ast-container
+.footer-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.footer-widget-area {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+}
+
+.footer-logo-section {
+    margin-top: 24px;
+    margin-bottom: 0;
+}
+
+.footer-logo-link {
+    display: inline-block;
+    text-decoration: none;
+    svg {
+        width: auto;
+        height: 27px;
+        display: block;
+        fill: #ffffff;
+    }
+}
+
+.footer-about-text {
+    display: none;
+    font-size: 12px;
+    font-weight: 450;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.custom-site-footer {
+    h3 {
+        color: #ffffffeb;
+        font-size: 16.5px;
+        margin-bottom: 15px;
+        letter-spacing: .3px;
+        font-weight: 700;
+        line-height: 25px;
+    }
+    a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.2s ease;
+        &:hover {
+            color: #ffffff;
+        }
+    }
+}
+
+.footer-subscribe-section{
+    padding-top: 15px;
+    p {
+        color: #fff;
+        margin-bottom: 10px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    h3 {
+        font-size: 18px;
+    }
+}
+
+.footer-email-form {
+    display: flex;
+    overflow: hidden;
+
+    input[type="email"] {
+        flex-grow: 1;
+        background: #e0e9de33;
+        padding: 12px 15px;
+        color: #ffffff;
+        font-size: 16px;
+        min-width: 0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        &::placeholder {
+            color: #fff7;
+        }
+    }
+
+    button {
+        all: unset;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 27px;
+        background: #fff;
+        color: #3E8363;
+        cursor: pointer;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        
+        svg {
+            all: unset;
+            height: 13px;
+            width: auto;
+        }
+
+        
+        .icon.icon-chevron-down.icon-chevron-right-small.reverse-icon {
+            stroke-width: 1.5px;
+            transform: rotate(-90deg)scale(1.29);
+        }
+        
+    }
+}
+
+.custom-site-footer .accordion-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 13px 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+    margin: 0;
+    color: #ffffff;
+}
+
+.custom-site-footer .circle-chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.custom-site-footer .chevron {
+    transition: transform 0.3s ease;
+    width: 13px;
+    height: auto;
+    stroke-width: 1;
+    width: 20px;
+    path {
+        stroke-width: 1.5;
+    }
+}
+
+.custom-site-footer .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.25, 0.1, 0.25, 1.0);
+    ul {
+        list-style: none;
+        padding: 0 0 20px 0;
+        margin: 0;
+        li a {
+            display: block;
+            padding: 8px 0;
+            color: #ffffffa8;
+            font-size: 14.5px;
+        }
+    }
+}
+
+.footer-meta-section {
+    text-align: left;
+    padding-top: 30px;
+}
+
+.footer-social-icons {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 27px;
+    margin-top: 25px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #ffffff33;
+    svg {
+        width: 22px;
+        height: 22px;
+        fill: #ffffff;
+    }
+}
+
+.social-icon-link {
+    color: #ffffff;
+    display: inline-block;
+    transition: opacity 0.2s ease;
+    &:hover {
+        opacity: 0.8;
+    }
+    svg {
+        display: block;
+    }
+}
+
+.footer-divider {
+    border: none;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 0 30px 0;
+}
+
+.footer-payment-icons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 20px 0;
+    justify-content: flex-start;
+}
+
+.payment-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 26px;
+    width: auto;
+    box-sizing: border-box;
+    min-width: 40px;
+}
+
+.payment-icon-bg {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.payment-icon {
+    &--visa, &--apple, &--mastercard, &--gpay {
+        background-color: white;
+        border-radius: 2px;
+    }
+    &--discover, &--amex {
+        border-radius: 2px;
+        min-width: 37px;
+        overflow: hidden;
+    }
+    svg {
+        display: block;
+        height: 100%;
+        width: auto;
+    }
+}
+
+.icon.icon-payment-gpay {
+    transform: scale(.75);
+}
+
+.footer-copyright p {
+    font-size: 13px;
+    font-weight: 150;
+    color: #efe5e5;
+    margin: 0;
+    padding-bottom: 0px;
+}
+
+.footer-widget-area .custom-accordion-item.open .accordion-content ul {
+    padding-bottom: 0px;
+}
+
+// Removed rule targeting .ast-container as it's no longer used.
+
+/*=================================
+* DESKTOP FOOTER STYLES
+* =================================
+*/
+@include lg {
+    .custom-site-footer {
+        margin-top: 100px;
+        padding: 64px 0;
+        padding-bottom: 32px;
+    }
+    
+    .footer-container {
+        @include gutter;
+    }
+
+    .footer-widget-area {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr) 1.5fr;
+        gap: 30px 30px;
+        align-items: start;
+    }
+
+    .footer-meta-section {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        margin-top: 0px;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        row-gap: 0px;
+    }
+
+    .custom-site-footer .accordion-toggle {
+        cursor: default;
+        padding: 0;
+        margin-bottom: 10px;
+
+        .plain-chevron {
+            display: none;
+        }
+    }
+
+    .custom-site-footer .circle-chevron {
+        display: none;
+    }
+
+    .custom-site-footer .accordion-content {
+        max-height: none;
+        overflow: visible;
+        transition: none;
+        ul {
+            padding: 0;
+            li a {
+                padding: 4px 0;
+                font-size: 14px;
+                color: #e0e0e0;
+                &:hover {
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+
+    .footer-subscribe-section {
+        grid-column: 5 / -1;
+        grid-row: 1;
+        padding-top: 0;
+        margin-right: 0;
+        min-width: 275px;
+        max-width: 400px;
+        p {
+            font-size: 15px;
+        }
+        h3 {
+            margin-top: 0;
+        }
+    }
+
+
+    .footer-social-icons {
+        margin-top: 30px;
+        border-bottom: none;
+        padding-bottom: 0;
+        justify-content: start;
+    }
+
+    .footer-logo-section {
+        order: 1;
+        margin-top: 0;
+    }
+
+    .footer-about-text {
+        display: block;
+        order: 2;
+        flex-basis: 100%;
+        padding-top: 15px;
+    }
+
+    .footer-copyright {
+        order: 3;
+    }
+
+    .footer-payment-icons {
+        order: 4;
+        margin: 0 0 0 auto;
+    }
+
+    .custom-site-footer .custom-accordion-item {
+        h3 {
+            font-size:18px;
+            color: #ffffffeb;
+        }
+        .accordion-content a {
+            font-size:16px;
+            font-weight:500;
+            color: #ffffff8f;
+        }
+    }
+}
+@include sm-down {
+    .custom-site-footer{
+        margin-top: 40px;
+    }
+}
+
+
+@include xl {
+    .footer-container {
+        padding-left: 90px;
+        padding-right: 90px;
+    }
+}
+
+
+
+// stuff i had to add because @ 1024 width 

@@ -1,0 +1,335 @@
+/* styles for hero banner swiper */
+
+@include lg-down {
+
+.section-title-shop-by-category {
+padding-top: 32px;
+padding-left: 32px;
+margin-bottom: 0;
+
+}
+
+
+h2.section-title-shop-by-category {
+margin-bottom: 0 ;
+font-size: 24px;
+}
+
+
+
+
+  /* --- Swiper Container & Wrapper --- */
+
+  /* The main content area that holds the swiper */
+  .shop-hero-banner-content {
+    padding: 24px 0;
+    overflow: hidden;
+  }
+
+  /* The swiper instance itself, add padding here to keep slides off the screen edges */
+  .hero-category-swiper {
+    margin-left: 15px;
+    margin-right: 15px;
+    overflow: visible;
+    padding-top: 30px;
+    padding-bottom: 15px;
+  }
+
+  /* --- Individual Slide (Category Card) --- */
+
+  /* Style for each slide, which is our category filter item */
+  .category-filter-item.swiper-slide {
+    width: 100px;
+    flex-shrink: 0;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01);
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-height: 109px;
+  }
+
+
+  /* --- Card Internals (Button & Thumbnail) --- */
+
+  /* Style the filter button (the top part of the card) */
+  .category-filter-item .filter-button {
+    box-sizing: border-box;
+    width: 100%;
+    height: 35px;
+    padding: 0 10px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: all 0.2s ease;
+    background: var(--highlight3-solid);
+    backdrop-filter: blur(var(--highlight2-blur));
+    
+    /* MODIFICATION: Button now only handles the TOP border */
+    border-top: 1px solid var(--highlight3-solid);
+    border-left: 1px solid var(--highlight3-solid);
+    border-right: 1px solid var(--highlight3-solid);
+    border-bottom: none;
+  }
+
+  /* Active state for the filter button */
+  .category-filter-item .filter-button.active {
+    color: #fff;
+    background: var(--highlight-bg);
+    backdrop-filter: blur(var(--highlight-blur));    
+    border-top: 1px solid var(--highlight-solid);
+    border-left: 1px solid var(--highlight-solid);
+    border-right: 1px solid var(--highlight-solid);
+    border-bottom: none;
+  }
+  
+  /* MODIFICATION: Parent container now handles side borders */
+  .hero-category-swiper .category-filter-item {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+  }
+
+  /* Style the thumbnail wrapper (the bottom part of the card) */
+  .category-filter-item .category-thumbnail-wrap {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    margin-top: -35px;
+        border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    overflow: hidden;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    box-sizing: border-box;
+
+    /* MODIFICATION: Thumbnail wrap now only handles the BOTTOM border */
+    border-bottom: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-top: none;
+  }
+
+  /* --- MODIFICATION: UNIFIED STYLES FOR SELECTED ITEM BORDER --- */
+  .category-filter-item.is-selected {
+    border-color: var(--highlight-solid);
+  }
+  .category-filter-item.is-selected .filter-button {
+    border-color: var(--highlight-solid);
+  }
+  .category-filter-item.is-selected .category-thumbnail-wrap {
+    border-color: var(--highlight-solid);
+  }
+  
+  
+  /* Style the actual thumbnail image */
+  .category-filter-item .category-thumbnail-wrap .category-thumbnail {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+
+  /* Style for the placeholder when no thumbnail is found */
+  .category-filter-item .category-thumbnail-wrap.category-thumbnail-placeholder {
+    background-color: #fdfdfd;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+
+  /* Defensive overrides for old styles that are no longer needed */
+  .shop-hero-banner-filters {
+    display: none !important;
+  }
+}
+
+
+
+.swiper-button-next,
+.swiper-button-prev {
+    width: 25px;
+    height: 25px;
+    background-color: var(--highlight1-bg);
+    border-radius: 50%;
+    color: #fff; /* arrow color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    top: 60%;
+}
+
+.swiper-button-prev { left: -10px; }
+.swiper-button-next{right: -10px;}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 18px; /* adjust arrow size */
+    font-weight: bold;
+}
+
+/*==========================================================
+ * Full-Width Hero Swiper Modification
+ *==========================================================*/
+
+@include lg-down {
+
+    /* --- 1. Remove Parent Container Padding --- */
+    .shop-hero-banner-section {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    /* --- 2. Make the Swiper Element Full-Width --- */
+    #primary .hero-category-swiper{
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+        box-sizing: border-box;
+        overflow: visible;
+    }
+
+    /* --- 3. Reposition the Navigation Arrows --- */
+    .swiper-button-prev {
+        left: 10px;
+    }
+
+    .swiper-button-next {
+        right: 10px;
+    }
+    
+    /* --- 4. Tell Swiper to Ignore its Own Padding for Clipping --- */
+    .swiper.hero-category-swiper {
+        clip-path: inset(0 0 0 0);
+        overflow: clip;
+    }
+    
+    .shop-hero-banner-image-wrapper{
+      margin-left:15px;
+      margin-right:15px;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      overflow:hidden;
+    }
+}
+
+
+
+/*===============================
+* hero banner responsive logic
+*================================
+*/
+
+@include lg-down {
+
+  /* --- Styles for when we have 3 or fewer categories (Swiper is disabled) --- */
+
+  .hero-category-swiper .swiper-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 15px;
+    padding: 0 15px;
+  }
+
+  .hero-category-swiper.no-swiper .category-filter-item {
+    flex-basis: 0;
+    flex-grow: 1;
+    transition: flex-grow 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .hero-category-swiper.no-swiper:has(.is-selected) .category-filter-item.is-selected {
+    flex-grow: 1.1;
+  }
+
+  .hero-category-swiper.no-swiper:has(.is-selected) .category-filter-item:not(.is-selected) {
+    flex-grow: 1;
+    opacity: .85;
+  }
+
+
+  /* --- Responsive improvements for when Swiper IS active --- */
+
+  .hero-category-swiper .category-filter-item.swiper-slide {
+    width: 30%;
+    flex-shrink: 0;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01);
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-height: 109px;
+  }
+}
+.hero-category-swiper.no-swiper .swiper-wrapper {
+  padding: 0;
+}
+
+
+@include md-lg {
+  .category-filter-item .filter-button{
+    height: 55px;
+  }
+    /* Style the thumbnail wrapper (the bottom part of the card) */
+  .category-filter-item .category-thumbnail-wrap {
+    margin-top: -54px;
+
+  }
+#primary .hero-category-swiper{
+padding: 32px;
+}
+    .hero-category-swiper .swiper-wrapper {
+gap: 32px
+}
+  .category-filter-item .filter-button span{
+    font-size: 16px;
+  }
+
+}
+
+@include md-down {
+.section-title-shop-by-category{
+padding-top: 15px;
+padding-left: 15px;
+}
+
+}
+
+@include lg {
+
+/* no categories on desktop */
+.swiper.hero-category-swiper,.section-title-shop-by-category{display:none;}
+
+.shop-hero-banner-promo-wrapper{display:none;}
+}

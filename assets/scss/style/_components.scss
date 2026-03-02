@@ -1,0 +1,388 @@
+// assets/scss/style/_components.scss
+
+/*========================================================================
+ * COMPONENT: SWIPER.JS PRODUCT GALLERY
+ * ========================================================================*/
+.woocommerce div.product div.images.woocommerce-product-gallery {
+    overflow: hidden;
+    .woocommerce-product-gallery__trigger {
+        display: none !important;
+    }
+}
+
+.gallery-main {
+    position: relative;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    overflow: hidden;
+
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        color: #333;
+        background-color: rgba(255, 255, 255, 0.7);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        &:after {
+            font-size: 18px;
+            font-weight: 900;
+        }
+    }
+
+    .swiper-pagination {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 15px !important;
+        width: auto !important;
+        padding: 5px 10px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        height: auto !important;
+        gap: 10px;
+        background-color: rgba(0, 0, 0, 0.01);
+    }
+
+    .swiper-pagination-bullet {
+        background-color: rgba(0, 0, 0, 0.3);
+        opacity: 0.6;
+        width: 6px;
+        height: 6px;
+    }
+
+    .swiper-pagination-bullet-active {
+        background-color: rgba(0, 0, 0, 0.6);
+        opacity: 1;
+    }
+}
+
+.gallery-thumbs {
+    height: 100px;
+    opacity: 1;
+
+    .swiper-slide {
+        opacity: 0.5;
+        cursor: pointer;
+        border: 2px solid transparent;
+        border-radius: 4px;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .swiper-slide-thumb-active {
+        opacity: 1;
+        border-color: #0073aa;
+    }
+}
+
+@include lg-down {
+    .woocommerce-product-gallery {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .gallery-thumbs {
+        display: none;
+    }
+
+    .gallery-main {
+        margin-bottom: 0;
+        aspect-ratio: 4 / 3;
+        border: none;
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .swiper-button-next,
+        .swiper-button-prev {
+            display: none;
+        }
+    }
+}
+
+
+/*========================================================================
+ * COMPONENT: GLOBAL SITE ANNOUNCEMENT BAR
+ * ========================================================================*/
+.site-announcement-bar {
+    // Properties from the prioritized second block:
+    background: var(--highlight2-solid);
+    padding: 0px 15px;
+    font-size: 14px;
+    font-weight: 650;
+    height: var(--announcement-height);
+    
+    // Unique property preserved from the first block:
+    backdrop-filter: blur(4px);
+
+    // Properties that were identical in both blocks:
+    color: #fff;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    // Nested rule preserved from the first block:
+    .icon-package-box {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/*========================================================================
+ * COMPONENT: CAROUSEL
+ * ========================================================================*/
+.carousel-nav.is-hidden {
+    display: none;
+}
+
+.carousel-item video {
+    &::-webkit-media-controls, &::-moz-media-controls, &::media-controls {
+        display: none;
+    }
+}
+
+.carousel-item.is-active video {
+    &::-webkit-media-controls, &::-moz-media-controls, &::media-controls {
+        display: flex;
+    }
+}
+
+/*========================================================================
+ * COMPONENT: SIDECART (XOO)
+ * ========================================================================*/
+.xoo-wscb-icon.xoo-wsc-icon-bag2::before {
+    display: none;
+}
+
+.xoo-wsc-cart-active .xoo-wsc-opac {
+    opacity: 1;
+}
+
+.xoo-wsc-opac {
+    background-color: rgba(0, 0, 0, .5);
+}
+// Target the main side cart modal
+.xoo-wsc-modal.xoo-wsc-cart {
+
+    // --- 1. Container Styling (The sliding panel itself) ---
+    .xoo-wsc-container {
+        // Default (Closed) State
+        opacity: 0;
+
+        // Transition for CLOSING animation
+        // Animate width with the "pop-close" ease, then fade out the container.
+        transition: 0.6s var(--pop-close), opacity 0.6s ease-in 0.35s;
+    }
+
+    // --- 2. Content Styling (The elements inside the panel) ---
+    .xoo-wsc-container > * {
+        // Default (Hidden) State
+        opacity: 0;
+        // Fast fade-out when closing
+        transition: opacity 0.05s ease-out;
+    }
+
+    // --- 3. Active State (When the cart is open, via the .xoo-wsc-cart-active class) ---
+    &.xoo-wsc-cart-active {
+        
+        // Active container styles
+        .xoo-wsc-container {
+            // Active (Open) State
+            // The plugin itself sets the final width (e.g., 450px), we just need to ensure opacity is 1.
+            opacity: 1;
+
+            // Transition for OPENING animation
+            // Use the "pop-open" ease for the width animation.
+            // Opacity is handled by the closing transition, so we only define the width transition here.
+            transition: 0.6s var(--pop-open);
+        }
+
+        // Active content styles
+        .xoo-wsc-container > * {
+            // Active (Visible) State
+            opacity: 1;
+
+            // The key effect: A delayed, quick fade-in for the content.
+            // This makes the content appear *after* the panel has animated open.
+            transition: opacity 0.05s ease-in 0.55s;
+        }
+    }
+}
+
+/*========================================================================
+ * COMPONENT: GLOBAL ACCORDION
+ * VERSION: 3.1 - Final fix using separate transition properties to solve specificity issue.
+ * ========================================================================*/
+.accordion-group-wrapper {
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 14px;
+    padding: 0 28px;
+    .custom-accordion-item {
+        border-bottom: 1px solid var(--border);
+    }
+}
+#faqs-accordion .custom-accordion-item {
+    border-bottom: 1px solid var(--border);
+}
+
+.accordion-toggle {
+    width: 100%;
+    padding: 20px 0;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    color: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.custom-accordion-item {
+
+    // --- Base (Closed) State ---
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+
+        // Define the properties that will animate
+        transition-property: max-height, opacity;
+        // Define the default OPENING animation timing
+        transition-duration: 0.3s, 0.0s;
+        transition-timing-function: var(--pop-close), ease-in-out;
+        // Ensure there is no delay on opening
+        transition-delay: 0s, 0s;
+    }
+
+    .circle-chevron, .chevron {
+        transition: transform 0.3s var(--pop-close);
+        stroke-width: 1.5;
+    }
+
+    // --- Open State (Managed by JS) ---
+    &.open {
+        .accordion-content {
+            opacity: 1;
+
+            // --- THIS IS THE FIX ---
+            // Override with the CLOSING animation timing
+            // max-height: duration 0.3s, delay 0s
+            // opacity:    duration 0.1s, delay 0.3s
+            transition-duration: 0.3s, .1s;
+            transition-timing-function: var(--pop-open), ease-out;
+            transition-delay: 0s, 0.3s;
+        }
+
+        .circle-chevron, .chevron {
+           transform: rotate(180deg);
+           transition: transform 0.3s var(--pop-open);
+        }
+    }
+
+    // --- FIX FOR JANK: Instant Desktop State (Managed by Pure CSS) ---
+    &[data-desktop-open="true"] {
+        @include lg {
+            // This rule renders the accordion open instantly on desktop without JS.
+            .accordion-content {
+                max-height: 2000px; // Use a large, fixed value that won't animate.
+                opacity: 1;
+            }
+        }
+    }
+    
+    .chevron-icon {
+        width: 8px;
+        height: 12px;
+    }
+}
+
+
+.circle-chevron {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: currentColor;
+    background: #fbfbfb;
+}
+
+
+/* --- TRANSITION SUPPRESSION (No change needed) --- */
+body.is-resizing {
+    .custom-accordion-item,
+    .custom-accordion-item .accordion-content,
+    .custom-accordion-item .circle-chevron,
+    .custom-accordion-item .chevron {
+        transition: none !important;
+    }
+}
+
+/*========================================================================
+ * COMPONENT: GLOBAL STAR RATING
+ * ========================================================================*/
+.svg-star-rating {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+	color: var(--text);
+}
+
+.star-container {
+    position: relative;
+    width: 12px;
+    height: 12px;
+
+    .star-outline-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .star-fill-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        overflow: hidden;
+    }
+    .star-fill-layer {
+        width: 12px;
+        height: 12px;
+        display: block;
+    }
+}

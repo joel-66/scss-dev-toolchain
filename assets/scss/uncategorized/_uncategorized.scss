@@ -1,0 +1,16 @@
+// assets/scss/_uncategorized.scss VERSION 1.0
+// DESCRIPTION: A temporary workspace for uncategorized styles.
+
+    #ast-mobile-header .ast-button-wrap {
+        /* empty as a reminder */
+    }
+
+
+@media (min-width: 922px) {
+    /* Target the container for the mobile menu toggle button */
+    #ast-mobile-header .ast-button-wrap {
+        display: none !important;
+    }
+}
+
+

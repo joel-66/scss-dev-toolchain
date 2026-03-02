@@ -1,0 +1,23 @@
+{
+  "name": "jk-theme-dev",
+  "version": "1.0.0",
+  "description": "JK Theme Development Environment (Desktop Local)",
+  "main": "index.js",
+  "scripts": {
+    "scss:compile": "node run-sass.js",
+    "scss:watch": "node run-sass.js --watch",
+    "live-inject": "node live-injector.js",
+    "sync:watch": "node sync-to-server.js",
+    "start": "concurrently --names \"SASS,INJECT,SYNC\" \"npm:scss:watch\" \"npm:live-inject\" \"npm:sync:watch\"",
+    "build": "echo \"Build script not fully configured for dynamic files yet.\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chokidar": "^3.5.3",
+    "concurrently": "^7.0.0",
+    "sass": "^1.77.4",
+    "ws": "^8.5.0"
+  }
+}

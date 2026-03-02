@@ -1,0 +1,397 @@
+// trust-section.scss VERSION 3.9
+// DESCRIPTION: Finalized "Editorial List" layout with White Pill styling for mobile < 400px.
+
+/* ==========================================================================
+   "Why Choose Us?" Section Styles
+   ========================================================================== */
+.why-choose-us-section {
+  text-align: center;
+  @include gutter;
+  
+  /* --- DESKTOP DEFAULT WEIGHTS --- */
+  --trust-stroke: 1.25; 
+  --shield-trust-stroke: 1.4; 
+  --paw-trust-stroke: 1.2;    
+  --heart-trust-stroke: 1.25; 
+}
+
+.why-choose-us-content-wrapper {
+  padding: 60px 40px;
+  border-radius: 16px;
+  background-color: var(--contrast-background); 
+}
+
+.why-choose-us-title {
+  font-family: "Mulish", sans-serif;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 48px;
+  font-size: 28px;
+}
+
+// --- GRID DEFAULT (DESKTOP) ---
+.why-choose-us-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin: 0 auto 48px;
+  max-width: 1350px; 
+}
+
+.why-choose-us-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 
+     Min: 18px (@ 1024px)
+     Max: 28px (@ 1824px)
+     Slope: 1.25vw
+     Intercept: 5.2px
+  */
+  gap: clamp(18px, 5.2px + 1.25vw, 28px);
+  transition: transform 0.2s ease;
+}
+
+.why-choose-us-item-title {
+  color: var(--text);
+  font-weight: 800;
+  margin: 0;
+  text-align: center;
+  font-size: 24px; 
+}
+
+.why-choose-us-item-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  text-align: left;
+}
+
+/* --- ICON BASE STYLES --- */
+.why-choose-us-icon {
+  color: var(--highlight-solid);
+  opacity: .9;
+  stroke-width: var(--trust-stroke); 
+  flex-shrink: 0;
+  align-self: start;
+  width: 36px;
+  height: 36px;
+  transition: transform 0.2s ease;
+}
+
+/* --- DESKTOP SCALING --- */
+.icon-trust-shield {
+    stroke-width: var(--shield-trust-stroke);
+    transform: scale(1);
+}
+.icon-trust-heart {
+    stroke-width: var(--heart-trust-stroke);
+    transform: scale(1.05); 
+    transform-origin: center;
+}
+.icon-trust-paw {
+    stroke-width: var(--paw-trust-stroke);
+    transform: scale(0.98); 
+    transform-origin: center;
+}
+
+.why-choose-us-item-subtitle {
+  font-weight: 550;
+  line-height: 1.3;
+  margin: 0;
+  max-width: 100%;
+  font-size: 18px;
+}
+
+a.button.why-choose-us-button.button {
+  display: inline-block;
+  background-color: var(--highlight-solid);
+  color: #fff;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  margin-bottom: 16px;
+}
+
+.why-choose-us-footer-text {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  margin-top: 16px;
+}
+
+// --- Responsive Adjustments ---
+
+@include lg {
+  .why-choose-us-title {
+    font-size: clamp(28px, calc(28px + (20 * (100vw - 1024px) / 800)), 48px);
+  }
+  /* 
+     Min: 20px (@ 1024px)
+     Max: 30px (@ 1824px)
+     Slope: 1.25vw
+  */
+  .why-choose-us-item-title {
+    font-size: clamp(20px, 7.2px + 1.25vw, 30px);
+  }
+
+  /* 
+     Min: 16px (@ 1024px)
+     Max: 22px (@ 1824px)
+     Slope: 0.75vw 
+  */
+  .why-choose-us-item-subtitle {
+    font-size: clamp(16px, 8.32px + 0.75vw, 22px);
+  }
+}
+@include lg-down {
+.why-choose-us-section {
+    padding: 0 32px;
+}
+}
+
+@include md-lg {
+    .why-choose-us-content-wrapper {
+        padding: 40px 32px;
+    }
+    .why-choose-us-item-content {
+        gap: 8px;
+    }
+
+    /* 
+       Target: .why-choose-us-icon
+       Min: 30px (@ 768px) -> Max: 36px (@ 1023px)
+       Slope: ~2.35vw
+       Intercept: ~11.93px
+    */
+    .why-choose-us-icon {
+        width: clamp(30px, 11.93px + 2.35vw, 36px);
+        height: clamp(30px, 11.93px + 2.35vw, 36px);
+    }
+
+    /* 
+       Target: Title
+       Min: 15px (@ 768px) -> Max: 20px (@ 1023px)
+       Slope: ~1.96vw
+       Intercept: -0.05px
+    */
+    .why-choose-us-item-title {
+        font-size: clamp(15px, -0.05px + 1.96vw, 20px);
+    }
+
+    /* 
+       Target: Subtitle & Footer Text
+       Min: 13px (@ 768px) -> Max: 16px (@ 1023px)
+       Slope: ~1.18vw
+       Intercept: ~3.97px
+    */
+    .why-choose-us-item-subtitle,
+    .why-choose-us-footer-text {
+        font-size: clamp(13px, 3.97px + 1.18vw, 16px);
+    }
+}
+
+
+
+//  md-lg ".why-choose-us-item-title" font size needs to be 18px
+
+// --- TABLET LAYOUT (< 1024px) ---
+@include md-down {
+    .why-choose-us-section {
+        padding: 0 32px;
+        --shield-trust-stroke: 1.3;
+        --paw-trust-stroke: 1.3;
+        --heart-trust-stroke: 1.3;
+    }
+    
+    .icon-trust-paw { transform: scale(1.02); }
+    .icon-trust-shield { transform: scale(0.98); }
+    
+    .why-choose-us-content-wrapper {
+        padding: 40px 32px;
+    }
+
+    .why-choose-us-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 20px;
+        max-width: 600px;
+    }
+
+    .why-choose-us-item:last-child {
+        grid-column: 1 / -1; 
+        width: 100%;
+        max-width: 50%; 
+        margin: 0 auto; 
+    }
+
+    .why-choose-us-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .why-choose-us-item-content {
+        display: contents; 
+    }
+
+.why-choose-us-icon {
+        order: -1;
+        
+        /* 
+           Width: 33px (@ 480px) -> 36px (@ 768px) 
+           Slope: 1.04vw
+        */
+        width: clamp(33px, 28px + 1.04vw, 36px);
+        
+        /* 
+           Height: 36px (@ 480px) -> 40px (@ 768px) 
+           Slope: 1.39vw
+        */
+        height: clamp(36px, 29.33px + 1.39vw, 40px);
+        
+        align-self: center;
+        margin-bottom: 0px;
+    }
+
+    .why-choose-us-item-title {
+        order: 0;
+        font-size: 14px;
+        margin-bottom: 4px;
+        min-height: auto; 
+        width: auto; 
+    }
+
+    .why-choose-us-item-subtitle {
+        order: 1;
+        font-size: 12px;
+        text-align: center;
+        line-height: 1.4;
+    }
+
+          
+    .why-choose-us-item-title {
+        /* 16px -> 18px */
+        font-size: clamp(16px, 12.67px + 0.69vw, 18px);
+    }
+
+    .why-choose-us-item-subtitle,
+    .why-choose-us-footer-text {
+        /* 14px -> 15px */
+        font-size: clamp(14px, 12.33px + 0.35vw, 15px);
+    }
+}
+
+@include md-down {
+    .why-choose-us-section { padding: 0 15px; }
+    .why-choose-us-content-wrapper { padding: 24px 12px; }
+}
+
+@include sm-down {
+    .why-choose-us-title {
+        font-size: clamp(20px, 3.81vw + 7.81px, 24px);
+        margin-bottom: 32px;
+    }
+    .why-choose-us-grid{ gap: 30px 15px; }
+    .why-choose-us-icon { margin-bottom: 10px; }
+    .why-choose-us-item{ gap: 6px; }
+    a.button.why-choose-us-button.button {
+        height: 42px;
+        font-size: 15px;
+        line-height: 1;
+
+    }
+}
+
+
+
+/* ==========================================================================
+   MOBILE LAYOUT (< 480px)
+   Refined "Phantom Column" - Tighter Gap, Better Breathing Room
+   ========================================================================== */
+@include sm-down {
+    .why-choose-us-content-wrapper {
+        padding: clamp(24px, -24.29px + 15.09vw, 48px) clamp(12px, -12.15px + 7.55vw, 24px);
+    }
+    // 1. THE SHRINK-WRAP CONTAINER
+    .why-choose-us-grid {
+        display: flex; // Flex column makes "fit-content" work easily
+        flex-direction: column;
+        
+        // MAGIC: Shrink width to fit the widest text item exactly
+        width: fit-content; 
+        // Then center that perfectly tight block
+        margin: 0 auto; 
+        margin-bottom: 32px;
+        gap: 24px;
+        max-width: 100%; // Safety for tiny screens
+    }
+
+    // Reset the "Odd Man Out" logic from tablet view
+    .why-choose-us-item:last-child {
+        max-width: 100%;
+    }
+
+    .why-choose-us-item {
+        display: grid;
+        // Tightened Icon Column (42px) + Fluid Text Column
+        grid-template-columns: 42px 1fr; 
+        grid-template-rows: auto auto; 
+        gap: 0 clamp(5px, -3.05px + 2.52vw, 9px);
+        
+        // Fill the shrink-wrapped parent
+        width: 100%;
+        max-width: none; 
+        
+        text-align: left;
+        align-items: center;
+    }
+
+    /* --- ICON --- */
+    .why-choose-us-icon {
+        grid-column: 1;
+        grid-row: 1 / -1; /* Spans height of both text lines */
+        justify-self: center;
+        margin-bottom: 0;
+        width: clamp(30px, 19.94px + 3.14vw, 35px);
+        /* Height: Scales from 35px to 40px */
+        height: clamp(35px, 24.94px + 3.14vw, 40px);
+        // No extra margin needed, the grid gap handles it
+    }
+
+    /* --- TITLE --- */
+    .why-choose-us-item-title {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: left;
+        font-size: clamp(14px, 9.97px + 1.26vw, 16px);
+        align-self: end; 
+        margin: 0;
+        // Fix for "dancing" line-heights
+        line-height: 1.2; 
+    }
+
+    /* --- SUBTITLE --- */
+    .why-choose-us-item-subtitle {
+        grid-column: 2;
+        grid-row: 2;
+        text-align: left;
+        font-size: clamp(12px, 7.97px + 1.26vw, 14px);
+        color: #666;
+        align-self: start; 
+        margin-top: clamp(2px, -2.03px + 1.26vw, 4px);
+    }
+    .why-choose-us-footer-text {
+        font-size: clamp(12px, 7.97px + 1.26vw, 14px);  
+    }
+}
+
+
+

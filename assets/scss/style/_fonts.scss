@@ -1,0 +1,102 @@
+// assets/scss/style/_fonts.scss
+// VERSION: 2.0 - Migrated for JK theme with relative paths and cleaned selectors.
+
+/*=========================
+* @FONT-FACE DECLARATIONS
+*
+* Defines all custom fonts used in the theme.
+* Paths are now relative to the SCSS file location for portability.
+*=========================
+*/
+
+@font-face {
+  font-family: 'Figtree';
+  src: url('assets/fonts/Figtree-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Figtree';
+  src: url('assets/fonts/Figtree-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 1000;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('assets/fonts/Mulish-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('assets/fonts/Mulish-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 1000;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('assets/fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 1000;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Worksans';
+  src: url('assets/fonts/WorkSans-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 1000;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+
+/*=========================
+* GLOBAL FONT ASSIGNMENTS
+*
+* Sets the default font families for body text and headings.
+*=========================
+*/
+
+/* Base body and paragraph font */
+body,
+button,
+input,
+select,
+textarea {
+  font-family: 'Figtree', sans-serif;
+  color: var(--text);
+  letter-spacing: normal;
+  line-height: 1.5; // Restored sensible default line-height from Underscores
+}
+
+/* Base heading font */
+h1, h2, h3, h4, h5, h6,
+.woocommerce-loop-product__title a {
+  font-family: 'Mulish', sans-serif;
+  color: var(--text);
+  line-height: 1.2; // A common, tighter line-height for headings
+}
+
+
+/*=========================
+* SPECIFIC TYPOGRAPHY OVERRIDES
+*
+* Styles for specific elements that deviate from the base settings.
+*=========================
+*/
+.product_subtitle {
+  font-family: 'Figtree', sans-serif;
+  font-weight: 300;
+  letter-spacing: normal;
+  font-size: 15px;
+  color: var(--text);
+}

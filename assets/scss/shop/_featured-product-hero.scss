@@ -1,0 +1,444 @@
+// assets/scss/shop/_featured-product-hero.scss VERSION 1.0
+// DESCRIPTION: Styles for the featured product/trending section.
+/*==================================================
+  CATEGORY FEATURED PRODUCT HERO
+==================================================*/
+.section-title-trending{
+@include gutter;
+}
+h2.section-title-trending{
+font-weight: 850;
+font-size: 40px;
+color: #272727;
+margin-bottom: 32px;
+}
+
+
+.featured-product-hero-section {
+  box-sizing: border-box;
+  margin:5px;
+  @include gutter;
+  display: flex;
+  margin-bottom: 42px;
+}
+
+.featured-product-container {
+  display: flex;
+  width: 100%;
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.featured-product-details {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 52px;
+    background-color: #fff;
+    border-right: 1px solid var(--border);
+    min-width: 500px;
+    max-width: 680px;
+}
+
+.featured-product-image {
+    flex: 1 1 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 52px;
+    background-color: #fff;
+}
+.featured-product-image img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 15px;
+}
+
+.featured-product-details .product-badges-container {
+    position: static;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.featured-product-details .custom-title-rating {
+    display: flex;
+    align-items: center;
+}
+
+.featured-product-details .woocommerce-loop-product__title {
+    order: 1;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #212529;
+    margin: 0;
+    align-self: start;
+}
+
+.featured-product-details .custom-title-rating .custom-rating {
+    order: 2;
+    margin: 0;
+}
+
+.featured-product-details .woocommerce-loop-product__title a {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 750;
+}
+
+
+
+.featured-product-details .new-price {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 10px 0 15px;
+}
+
+.featured-product-divider {
+    display: none;
+}
+.featured-product-subtitle {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+.featured-product-features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px;
+}
+.featured-product-features-list li {
+    padding-left: 5px;
+    position: relative;
+    font-size: 15px;
+    line-height: normal;
+    padding-bottom: 5px;
+}
+
+.featured-product-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: auto;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.featured-product-actions .product-card-actions,
+.learn-more-button {
+    width: 50%;
+    max-width:192px;
+}
+.featured-product-actions .add_to_cart_button.product_type_variable.button {
+    width:100%;
+    max-width:192px;
+}
+
+@include lg {
+/*hides */
+.featured-product-subtitle.featured-subtitle-mobile{
+display: none;
+}
+
+  .featured-product-hero-section {
+    max-height: 670px;
+  }
+  
+  .product-header-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .product-header-group .custom-title-rating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .product-header-group .woocommerce-loop-product__title {
+    order: 1;
+    width: auto;
+    margin-right: auto;
+  }
+
+  .product-header-group .custom-rating {
+    order: 2;
+  }
+
+  .product-header-group .new-price {
+    margin: 10px 0 15px 0;
+  }
+
+  /* --- START: Accordion Desktop Styles --- */
+  .featured-product-more-details {
+    /* This makes the wrapper disappear, promoting its children to be direct children
+       of .featured-product-details, preserving the desktop flex layout perfectly. */
+    display: contents;
+  }
+  .featured-product-more-details .accordion-toggle {
+    /* The button is not needed on desktop. */
+    display: none;
+    
+  }
+  /* --- END: Accordion Desktop Styles --- */
+
+}
+/* --- Responsive: Tablet & Mobile (< 921px) --- */
+@include lg-down {
+/*hides */
+.featured-product-subtitle.featured-subtitle-desktop{
+display: none;
+}
+.section-title-trending{
+padding: 0 32px;
+}
+
+h2.section-title-trending{
+font-weight: 850;
+letter-spacing: .4px;
+font-size: 20px;
+color: #272727;
+margin-bottom: 32px;
+}
+
+
+.featured-product-hero-section {
+  padding-left: 32px;
+  padding-right: 32px;
+  margin-bottom: 24px;
+}
+
+    .featured-product-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items:center;
+    }
+    .featured-product-image {
+        order: -1;
+        max-width: 400px;
+        padding: 0;
+    }
+    .featured-product-details {
+        max-width: 100%;
+        width: 100%;
+        text-align: left;
+        padding: 20px;
+        border: none;
+        padding-top:0;
+        font-size: 11px;
+    }
+   
+   .featured-product-subtitle {
+   margin:10px 0;
+   }
+   
+        .featured-product-subtitle,
+        .featured-product-details li{
+        font-size: 14px;
+        padding-left:0;
+    }
+    
+    .product-header-group {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    .product-header-group .custom-title-rating {
+        display: flex;
+        flex-wrap: wrap;
+        flex-grow: 1;
+        order: 1;
+        gap: 8px;
+    }
+
+    .product-header-group .woocommerce-loop-product__title {
+        width: 100%;
+        order: 1;
+    }
+
+    .product-header-group .custom-rating {
+        order: 2;
+        align-self: start;
+    }
+
+    .product-header-group .new-price {
+        order: 2;
+        margin: 0;
+        margin-left: auto;
+    }
+
+    .featured-product-features-list {
+        text-align: left;
+        width: fit-content;
+        padding-left: 10px;
+
+    }
+
+.featured-product-more-details {
+  width: 100%;
+  margin-top: 10px;
+}
+.featured-product-more-details .accordion-toggle {
+  width: 100%;
+  max-width: fit-content;
+  height: fit-content;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 1.5px;
+  line-height: normal;
+  cursor: pointer;
+  text-align: center;
+  color: var(--1);
+  border-radius: 0;
+  border: none;
+  background: #fff;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.featured-product-more-details .accordion-content {
+
+
+}
+
+.featured-product-more-details .variation-swatch-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    }
+    
+    .featured-product-more-details .accordion-toggle {
+    /* Add flex properties to align text and icon */
+    display: flex;
+    align-items: center;
+    gap: 4px; /* Adjust spacing between text and icon */
+}
+
+.featured-product-more-details .chevron {
+    /* Ensures smooth rotation */
+    transition: transform 0.3s ease-in-out;
+    height: auto; 
+    width: 10px;
+}
+
+.featured-product-more-details.open .chevron {
+    /* Rotates the chevron 180 degrees when the accordion is open */
+    transform: rotate(180deg);
+}
+    /* --- END: Accordion Mobile Styles --- */
+}
+
+
+/* mobile / tablet */
+@include lg-down {
+  .featured-product-hero-section .product-header-group {
+    display: grid;
+    /* Create two columns: first takes available space, second fits its content (the price). */
+    grid-template-columns: 1fr auto;
+    /* Define a gap between the rating and the price. */
+    column-gap: 0px;
+    /* Vertically align items in the second row (rating and price). */
+    align-items: center;
+    padding-bottom: 24px; 
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .featured-product-hero-section .custom-title-rating {
+    display: contents;
+  }
+
+  .featured-product-hero-section .woocommerce-loop-product__title  {
+    /* Place it in the first row, spanning both columns. */
+    grid-column: 1 / -1; /* -1 means "to the end" */
+    grid-row: 1;
+
+    margin-bottom: 4px; /* Add a small space below the title. */
+  }
+  .featured-product-hero-section .woocommerce-loop-product__title  a {
+    font-size: 21px; 
+  }
+
+  /* 4. Place the Rating onto the Grid */
+  .featured-product-hero-section .custom-rating {
+    /* Place it in the second row, first column. */
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start; /* Align it to the left of its grid cell. */
+    align-self: center;
+  }
+
+  /* 5. Place the Price onto the Grid */
+  .featured-product-hero-section .new-price {
+    /* Place it in the second row, second column. */
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end; /* Align it to the right of its grid cell. */
+    /* Reset the huge desktop margin that pushes it to a new line. */
+    margin: 0;
+    font-size: 16px;
+    font-weight:400;
+  }
+
+}
+/* tablet only */
+ @include md-lg {
+
+}
+/* mobile only */
+ @include md-down {
+    .featured-product-hero-section {
+      max-height: 1720px;
+      width: 100%;
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-bottom: 24px;
+    }
+    
+    /* --- START: THIS IS THE FIX --- */
+    .featured-product-details {
+        /* Remove the problematic fixed width: width: 300px; */
+        width: 100%; /* Make the container responsive to its parent */
+        min-width: 0; /* Override the desktop min-width that was causing the overflow */
+        padding: 15px;
+        max-width: 100%;
+    }
+    
+    
+  /* 1. Establish the Grid Container */
+  .featured-product-hero-section .product-header-group {
+    margin-bottom: 0;
+  }
+
+
+
+  .featured-product-hero-section .woocommerce-loop-product__title  {
+
+    margin-bottom: 4px; /* Add a small space below the title. */
+  }
+  .featured-product-hero-section .woocommerce-loop-product__title  a {
+    font-size: 20px; 
+  }
+
+
+
+  /* 5. Place the Price onto the Grid */
+  .featured-product-hero-section .new-price {
+
+    margin: 0;
+    font-size: 15px;
+    font-weight:400;
+  }
+}
+
+

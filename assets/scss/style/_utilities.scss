@@ -1,0 +1,137 @@
+/*===================================
+*  UTILITIES & GLOBAL OVERRIDES
+* ===================================
+*/
+
+// NOTE: The classes below are essential for WordPress functionality.
+// They are used by the block editor and classic editor for content alignment
+// and accessibility. Do not remove them.
+
+/* Accessibility
+--------------------------------------------- */
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	clip-path: none;
+	color: #21759b;
+	display: block;
+	font-size: 0.875rem;
+	font-weight: 700;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+}
+
+/* Do not show the outline on the skip link target. */
+#primary[tabindex="-1"]:focus {
+	outline: 0;
+}
+
+/* Alignments
+--------------------------------------------- */
+.alignleft {
+	float: left;
+	margin-right: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+.alignright {
+	float: right;
+	margin-left: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1.5em;
+}
+
+/* Custom browser selection highlight color */
+::selection {
+    background-color: #cce4ff;
+    color: #1a1a1a;
+}
+::-moz-selection { /* Firefox specific */
+    background-color: #cce4ff;
+    color: #1a1a1a;
+}
+
+/* Remove quantity up and down arrows for number inputs */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Remove tap highlight color on mobile */
+a, button, input, textarea, select {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* fix astra animation on product links */
+.woocommerce-loop-product__title a {
+    transition: none;
+    animation: none;
+}
+
+/* =================================================================== */
+/* GLOBAL BUTTON OVERRIDE (EXAMPLE)
+/* =================================================================== */
+.custom-review-form .form-submit input#submit {
+    /* Shape & Size */
+    height: 42px !important;               
+    border-radius: 50px !important;
+    padding: 0 30px !important;            
+    border: none !important;
+
+    /* Color & Text */
+    background-color: #00c753 !important;
+    color: #ffffff !important;
+    font-family: 'Figtree', sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.7px !important;
+
+    /* Behavior & Centering */
+    transition: all 0.2s ease-in-out !important;
+    display: inline-flex !important;       
+    align-items: center !important;        
+    justify-content: center !important;    
+    line-height: 1 !important;             
+}
+
+.custom-review-form .form-submit input#submit:hover {
+    background-color: #00e05d !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.custom-review-form .form-submit input#submit:active {
+    background-color: #00b34a !important;
+    transform: translateY(0) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}

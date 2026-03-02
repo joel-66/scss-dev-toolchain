@@ -1,0 +1,136 @@
+/*=========================
+* auto-coloring
+* 
+* =========================
+*/
+
+// === THEME SOURCE COLOR (change this one to recolor site) ===
+// DEFINED IN HSL to bypass compiler conversion errors from HEX.
+// This is mathematically derived to produce the target color.
+// (Target L of 71.2%) - (l3 offset of 12%) = Base L of 59.2%
+$theme-color: hsl(27, 100%, 59.2%);
+
+// === Extract H, S, L from SCSS color helpers ===
+$th-h: hue($theme-color);
+$th-s: saturation($theme-color);
+$th-l: lightness($theme-color);
+
+// === Lightness offsets (negative = darker) ===
+// l3 is calibrated to produce the target color. The other levels
+// are set to create a smooth gradient from dark to light.
+$levels: (
+  l1: -10%, // Darkest layer for depth
+  l2:   0%, // Base color
+  l3:  12%, // Mid-tone (59.2% + 12% = 71.2%)
+  l4:  28%, // Lighter glow
+  l5:  38%  // Lightest pastel haze
+);
+
+// Helper functions
+@function solid($offset) {
+  @return hsl($th-h, $th-s, $th-l + $offset);
+}
+@function bg($offset, $alpha) {
+  // Return CSS color with alpha; modern browsers accept "hsl(h s l / a)" syntax
+  @return unquote("hsl(#{$th-h} #{$th-s} #{$th-l + $offset} / #{$alpha})");
+}
+
+// === Output CSS variables ===
+:root {
+  /* keep original var name for compatibility */
+  --1: #{$theme-color};
+  --accent: hsl(#{$th-h} #{$th-s} #{$th-l});
+  --accent-h: #{$th-h};
+  --accent-s: #{$th-s};
+  --accent-l: #{$th-l};
+
+  /* solid scale (darker -> lighter) */
+  --l1-solid: #{solid(map-get($levels, l1))};
+  --l2-solid: #{solid(map-get($levels, l2))};
+  --l3-solid: #{solid(map-get($levels, l3))};
+  --l4-solid: #{solid(map-get($levels, l4))};
+  --l5-solid: #{solid(map-get($levels, l5))};
+  
+  --highlight-bg-hover: #{bg(map-get($levels, l3), 0.92)};
+
+  /* Glow layers ordered from darkest base to lightest base */
+  --highlight-bg: #{bg(map-get($levels, l1), 0.36)};
+  --highlight1-bg: #{bg(map-get($levels, l1), 0.36)}; /* darker, low alpha for depth */
+  --highlight2-bg: #{bg(map-get($levels, l3), 0.40)}; /* mid glow */
+  --highlight3-bg: #{bg(map-get($levels, l4), 0.60)}; /* pastel haze */
+  --highlight4-bg: #{bg(map-get($levels, l5), 0.90)}; /* lightest, highest alpha */
+
+  /* solid outline-friendly variables */
+  --highlight-solid: var(--l2-solid);
+  --highlight-solid-hover: #{bg(map-get($levels, l2), .85)};
+  --highlight1-solid: var(--l1-solid);
+  --highlight2-solid: var(--l3-solid); // This will now be mathematically precise.
+  --highlight3-solid: var(--l4-solid);
+
+  --highlight-blur: 4px;
+}
+
+
+
+
+/*=========================
+* VARS
+* 
+* =========================
+*/
+
+:root {
+
+  /* remove astra later */
+  --1: #{$theme-color}; /* --1: rgb(255, 128, 0); */
+  --ast-global-color-0: var(--1); /* map Astra’s var to your shorthand */
+  --text: #1c1c1e  ;/*#1c1c1e;*/
+  --ast-global-color-3: var(--text);
+  --3: #f8fff8;   /* light backgrounds for various areas*/
+
+  /* borders */
+  --border: color-mix(in srgb, var(--1), white 78%); /*  #eeeeeea6 or  rgba(255, 145, 30, 0.15) */ /* nice = color-mix(in srgb, var(--1), white 88%) using "78%" currently */
+  --border-dark: color-mix(in srgb, var(--1), white 58%);
+  --border-size: 1px;
+  --border-main: var(--border-size) solid var(--border);
+
+  /* accessibility  */
+  --focus-outline: 2px solid var(--highlight-solid);
+  
+  /* theme contrasts */
+   --contrast-background: #F8FEFA; /* mint green */
+   --contrast-background-2: #FFF9F2; /* Warm Vanilla (New) */
+   --contrast-background-3: #FFF5F6; /* paw pad pink */
+   --contrast-background-4: #FAF7FC;  /*Soft Lavender*/
+
+  /* button */
+  --button-height: 48px; 
+
+
+
+
+
+  
+  /* animation */
+  --pop-open: cubic-bezier(1, .1, .1, 1);
+  --pop-close: cubic-bezier(.9, 0, 0, .9);
+
+  /* Header */
+  --header-height-desktop: 80px;
+  --announcement-height: 30px;
+  --header-color: var(--1); /* var(--text) */
+
+  /*load more height and side bar interaction */
+  --load-more-container-margin-top: clamp(50px, 37.2px + 1.25vw, 60px);
+
+  /* filters */
+  --filter-sort-color: #fff;
+  --filter-sort-stroke:4;
+    /* not sure if these are needed after astra merge */
+  --side-cart-offset-cumulative: 0px;
+  --scroll-top-offset-cumulative: 0px;
+ /* not sure if these are needed after astra merge */
+
+
+
+}

@@ -1,0 +1,200 @@
+// assets/scss/shop/_ajax-effects.scss
+// VERSION: 1.8 - Implemented Sticky Loader positioning for Desktop to keep cat in view during scroll.
+
+// ==========================================================================
+// Grid Transitions
+// ==========================================================================
+
+.shop-content-wrapper {
+    .products,
+    .no-products-found-wrapper {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+        will-change: opacity, transform;
+    }
+
+    .products.fade-out,
+    .no-products-found-wrapper.fade-out,
+    .woocommerce.fade-out {
+        opacity: .15 !important;
+        pointer-events: none;
+        transition: opacity 0.2s ease-in;
+    }
+
+    .products.fade-in,
+    .no-products-found-wrapper.fade-in {
+        opacity: .15 !important;
+        transform: translateY(15px);
+        transition: none !important;
+    }
+}
+
+// ==========================================================================
+// Loading Overlay (Lottie/GIF)
+// ==========================================================================
+
+.shop-content-gif {
+    // Mobile Default: Full Screen Fixed Overlay
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 98;
+    
+    .loading-indicator {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .loading-indicator dotlottie-player {
+        max-width: 200px;
+        max-height: 200px;
+        width: auto;
+        height: auto;
+    }
+
+    // Desktop Override: Scoped to Product Grid with STICKY center
+    @include lg {
+        position: absolute;
+        inset: 0; 
+        width: 100%;
+        height: 100%;
+        border-radius: 16px;
+        background-color: rgba(255, 255, 255, 0.6);
+        transform: none; 
+        display: block; 
+
+        // 1. THE CEILING: This pushes the "sticky" track down.
+        // The cat can never go higher than this padding.
+        padding-top: 150px; 
+
+        .loading-indicator {
+            position: sticky;
+            
+            // 2. THE FLOAT: Attempt to sit in the middle of the screen
+            top: 50vh; 
+            
+            // 3. THE OFFSET: Pull back slightly to center visually, 
+            // but reduced from -50% to prevent clipping at the top.
+            transform: translateY(-25%);
+            
+            z-index: 2;
+        }
+    }
+}
+
+.shop-content-gif.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+// ==========================================================================
+// Load More Specifics
+// ==========================================================================
+
+.load-more-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    margin-top: clamp(50px, 37.2px + 1.25vw, 60px);
+    
+    min-height: 50px; 
+
+    #load-more-products:disabled {
+        background-color: #f1f1f1;
+        color: #999;
+        border-color: #e0e0e0;
+        cursor: default;
+        opacity: 1; 
+        box-shadow: none;
+        transform: none;
+        
+        &:hover {
+            background-color: #f1f1f1;
+        }
+    }
+}
+
+.load-more-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+    dotlottie-player {
+        width: clamp(80px, 28.8px + 5vw, 120px) !important;
+        height: clamp(80px, 28.8px + 5vw, 120px) !important;
+    }
+}
+
+// FILE: assets/scss/shop/_ajax-effects.scss
+// VERSION: 1.9 - Replaced generic fade with Staggered Roll-In animations
+
+// ... (Existing Loader styles remain unchanged) ...
+
+// ==========================================================================
+// Staggered Grid Animations
+// ==========================================================================
+
+.shop-content-wrapper {
+    .products {
+        // Ensure grid layout remains stable during updates
+        display: grid; 
+        // (Your existing grid-template-columns logic in _product-grid.scss handles the rest)
+    }
+
+    // The individual product card state BEFORE animation starts
+    .products li.product {
+        // We don't force opacity 0 here by default to avoid SEO/JS-disabled issues.
+        // The JS will add the class '.animating-in' to new items.
+        
+        &.animating-in {
+            opacity: 0;
+            transform: translateY(30px); // Start 30px down
+            will-change: opacity, transform;
+        }
+
+        &.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            // The transition is defined here so it animates TO this state
+            // Cubic-bezier gives it that smooth "rolling" friction feel
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+    }
+    
+    // Fade Out State (Old Content leaving) - Keep this fast
+    .products.fade-out {
+        opacity: .6 !important;
+        transition: opacity 0.2s ease-in;
+    }
+}
+
+
+@include lg {
+    .shop-content-wrapper .shop-content-gif.is-active {
+        opacity: 1; // Ensure full opacity on active state
+    }
+    .shop-content-wrapper.loading-active .products {
+        opacity: 0.6;
+    }
+    
+    .load-more-container {
+        height: var(--button-height);
+    }
+}

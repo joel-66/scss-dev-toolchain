@@ -1,0 +1,113 @@
+// assets/scss/homepage/_hero.scss VERSION 1.0
+// DESCRIPTION: Styles for the homepage hero section.
+
+.homepage-hero {
+    // --- 1. Sizing & Positioning ---
+    // Establishes a flexible container that is at least 60% of the viewport height
+    // but caps out at a reasonable 700px on very tall screens.
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    // THE FIX:
+    height: 65vh;          // Target: Aim for 50% of the screen.
+    height: 65dvh;
+    min-height: 600px;     // Floor: Never let it get smaller than 450px (good for laptops).
+    max-height: 750px;     // Ceiling: Hard stop at 700px, even on 4K screens.
+    padding: 1rem;
+    overflow: hidden; // Prevents any potential image overflow issues.
+    
+    // Add top padding to account for the header
+    @include lg {
+        padding-top: var(--header-height-desktop);
+    }
+}
+
+.hero-background {
+    // --- 2. Background Image & Overlay ---
+    // This container holds the responsive image and the dark overlay.
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 700px;
+    z-index: 1; // Sits below the content.
+
+    // The dark overlay ensures text is always readable over any image.
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        max-height: 700px;
+        z-index: 2; // Sits directly on top of the image.
+    }
+}
+
+.hero-background__image {
+    // --- 3. Image Styling ---
+    // This makes our <img> element behave exactly like `background-size: cover`.
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 20% 50%; 
+    z-index: 1; // Sits below the overlay.
+}
+
+.hero-content {
+    // --- 4. Foreground Content ---
+    // Sits on top of the background and overlay.
+    position: relative;
+    z-index: 3;
+    color: #fff;
+    // Uses your gutter mixin for consistent horizontal padding on large screens.
+    @include gutter;
+}
+
+.hero-headline {
+    // --- 5. Typography ---
+    // Uses clamp() for fluid typography that scales with the viewport.
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 0.5em;
+}
+
+.hero-subheadline {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    line-height: 1.6;
+    max-width: 650px; // Keeps the text line-length readable.
+    margin: 0 auto 1.5em;
+    
+}
+
+.hero-cta-button {
+    // --- 6. Call to Action Button ---
+    // Inherits styles from your theme's primary button and uses your color variables.
+    display: inline-block;
+    background-color: var(--highlight2-solid);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    border: 1px solid transparent;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        background-color: var(--highlight-solid);
+        transform: translateY(-2px);
+    }
+    
+    // Adjust button size on mobile for better touch targets.
+    @include md-down {
+        padding: 12px 28px;
+        font-size: 0.95rem;
+    }
+}

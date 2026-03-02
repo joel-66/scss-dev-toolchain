@@ -1,0 +1,135 @@
+// assets/scss/shop/_shop-layout.scss VERSION 2.1
+// DESCRIPTION: Defines the main layout structure for the shop page, including the relationship between the sidebar and main content area.
+
+// High-level overrides to allow full-width banners and content control.
+body.woocommerce .ast-container,
+body.woocommerce.archive #main > .ast-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+// New main container for the entire shop section below the banners.
+.shop-main-area {
+    max-width: 1720px;
+    margin: 40px auto clamp(100px, 74.4px + 2.5vw, 120px); // Centers the section and provides vertical space.
+}
+
+// Primary layout row for sidebar + content grid.
+.shop-body-row {
+    display: flex;
+    gap: 60px;
+    position: relative;
+    padding-top: 24px;
+}
+
+// Generic container styles from original file.
+.shop-banner {
+    margin: 10px 0;
+}
+
+.shop-section-container {
+    margin-bottom: 0px;
+}
+
+// --- Content Column (Flex Child) ---
+.shop-content-wrapper {
+    flex: 1; // Fills remaining space.
+    min-width: 0; // Prevents overflow on smaller screens.
+    position: relative !important; // Keeps original rule
+    z-index: 1; // Keeps original rule
+}
+
+
+// --- Responsive Layout Adjustments ---
+
+@include lg-down {
+    .shop-body-row {
+        gap: 0; // Removes gap on mobile/tablet for a stacked layout.
+        padding-top: 25px;
+    }
+    
+    .shop-content-wrapper {
+        padding-top: 0;
+    }
+    .why-choose-us-section {
+        margin-top: 40px;
+    }
+}
+
+@include md-lg {
+    .shop-wrapper,
+    .shop-content-wrapper {
+        padding: 32px;
+    }
+
+}
+
+@include md-down {
+    .shop-wrapper,
+    .shop-content-wrapper {
+        padding: 15px;
+    }
+
+}
+
+@include lg {
+
+   // New main container for the entire shop section below the banners.
+    .shop-main-area {
+        @include gutter;
+    }
+    // --- Sidebar Column (Flex Child) ---
+    .shop-sidebar-wrapper {
+        flex: 0 0 250px; // Fixed width for the sidebar.
+        position: sticky;
+        top: calc(var(--header-height-desktop) + 30px);
+        height: fit-content;
+        align-self: flex-start;
+    }
+
+    // Hide the mobile-only sticky footer on desktop.
+    .shop-sidebar .sidebar-footer {
+        display: none;
+    }
+
+    // This is the ONLY rule that should remain, as it's specific to the shop page layout.
+    .shop-post-content-sections {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        margin-top: 64px;
+    }
+        .why-choose-us-section {
+        margin-top: 60px;
+    }
+    
+}
+
+@include md-down {
+    // Responsive padding for the header on small mobile.
+    .shop-header-row {
+        padding: 0 15px;
+    }
+    
+    .shop-body-row {
+        padding-top: 32px;
+    }
+}
+
+@include sm-down {
+.why-choose-us-section {
+    margin-top: 24px;
+}
+}
+
+@include xxl { 
+    .shop-sidebar-wrapper {
+        flex: 0 0 300px; // Fixed width for the sidebar.
+    }
+}
+
+

@@ -1,0 +1,471 @@
+// assets/scss/global/_email-signup.scss
+// VERSION: 1.7 - Fixed md-lg (768-1023px) layout to enforce strict 60/40 grid split.
+
+/* ==========================================================================
+   Email Perks CTA Section Styles (Mobile First)
+   ========================================================================== */
+
+.shop-section-container {
+    @include lg {
+        flex: 1 1 50%;
+        margin: 0;
+        border-radius: 16px;
+        @include gutter;
+    }
+
+    @include lg-down {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    @include md-down {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+.perk-icon {
+    display: inline-flex;
+    align-items: center;
+    color: var(--highlight-solid);
+    width: 16px;
+    height: 16px;
+}
+
+.icon.icon-rocket.perk-icon {
+    transform: scale(1.05);
+}
+
+.perk-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #ffffff;
+    border:var(--border-main);
+    padding: 6px 12px;
+    border-radius: 999px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.01);
+}
+
+.perk-text {
+    font-family: "Figtree", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.perks-cta-background-image {
+    padding-top: 75%;
+    background-size: cover;
+    background-position: center 0%;
+    border-radius: 16px;
+}
+
+/* --- BUTTON STYLES --- */
+.perks-cta-button {
+    border-radius: 0px;
+    box-sizing: border-box;
+    height: clamp(42px, 40.67px + 0.174vw, 44px);
+    padding: 5px 20px;
+    margin-left: -2px;
+    flex-shrink: 0;
+    background-color: var(--highlight-solid);
+    color: white;
+    border-top-right-radius: 999px;
+    border-bottom-right-radius: 999px;
+    font-weight: 700;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: fit-content;
+    border: 1px solid var(--highlight-solid);
+    transform: translateX(0);
+}
+
+.perks-cta-button:hover {
+    background-color: var(--highlight-solid-hover);
+}
+
+.perks-cta-form {
+    position: absolute;
+    bottom: 16px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    border: none;
+    background: none;
+    border-radius: 999px;
+}
+
+.perks-cta-header {
+    padding: 24px;
+    text-align: center;
+}
+
+.perks-cta-image-wrapper {
+    position: relative;
+    padding: 15px;
+    padding-top: 0;
+}
+
+.perks-cta-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.perks-cta-section {
+    background-color: var(--contrast-background);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* --- INPUT STYLES --- */
+.perks-cta-section .perks-cta-form .perks-cta-input {
+    flex-grow: 1;
+    height: clamp(42px, 40.67px + 0.174vw, 44px);
+    border: var(--border-main);
+    background: #fff;
+    padding-left: 24px;
+    padding-right: 10px;
+    font-size: 16px;
+    font-family: "Figtree", sans-serif;
+    font-weight: 350;
+    letter-spacing: -0.3px;
+    -webkit-font-smoothing: antialiased;
+    color: var(--text);
+    border-bottom-left-radius: 999px;
+    border-top-left-radius: 999px;
+    -webkit-appearance: none;
+    appearance: none;
+    border-right: none;
+}
+
+.perks-cta-section .perks-cta-form .perks-cta-input::placeholder {
+    color: color-mix(in srgb, var(--text), transparent 45%);
+    opacity: 1;
+}
+
+.perks-cta-section .perks-cta-form .perks-cta-input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+    -webkit-text-fill-color: var(--text) !important;
+}
+
+.perks-cta-title {
+    font-family: "Mulish", sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    margin: 0 0 15px 0;
+}
+
+/* Large Screens (4K) */
+@media (min-width: 1920px) {
+    .perks-cta-button,
+    .perks-cta-section .perks-cta-form .perks-cta-input {
+        height: clamp(44px, 20px + 1.25vw, 52px);
+    }
+}
+
+/* Standard Mobile/Tablet Down */
+@include lg-down {
+    .perks-cta-form {
+        max-width: 380px;
+        justify-self: center;
+        width: 100%;
+    }
+    .perks-cta-button{
+       font-size: 15px;
+       padding: 5px 8px;
+    }
+}
+
+/* ==========================================================================
+   Desktop Layout for Email CTA
+   ========================================================================== */
+@include md {
+    .perk-icon {
+        width: clamp(16px, 0.5263vw + 10.6316px, 18px);
+        height: clamp(16px, 0.5263vw + 10.6316px, 18px);
+    }
+
+    .perk-item {
+        padding: 5px 11px;
+    }
+
+    .perk-text {
+        font-size: clamp(12px, 0.5263vw + 6.6316px, 14px);
+    }
+
+    .perks-cta-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-content: center;
+        row-gap: 32px;
+        min-height: clamp(450px, 14.3678vw + 302.88px, 550px);
+        position: relative;
+    }
+    
+    .perks-cta-image-wrapper {
+        display: contents;
+    }
+
+    .perks-cta-header {
+        padding: 0 20px;
+        grid-column: 1;
+        grid-row: 1;
+        text-align: center;
+    }
+
+    .perks-cta-form {
+        grid-column: 1;
+        grid-row: 2;
+        position: static;
+        width: calc(100% - 64px);
+        max-width: 440px;
+        justify-self: center;
+        padding-bottom: 0;
+    }
+
+    .perks-cta-background-image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 100%;
+        padding-top: 0;
+        border-radius: 0;
+        clip-path: url(#cta-wavy-mask);
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .perks-cta-title {
+        font-size: clamp(28px, calc(28px + (20 * (100vw - 1024px) / 800)), 48px);
+        margin-bottom: 24px;
+        text-align: center;
+    }
+    
+    .perks-cta-list {
+        justify-content: center;
+        gap: 24px;
+    }
+}
+
+/* ==========================================================================
+   iPad / Tablet Portrait Adjustments (768px - 1023px)
+   ========================================================================== */
+@include md-lg {
+    .perks-cta-section {
+        display: grid;
+        grid-template-columns: 60% 40%;
+        
+        // ROW DEFINITION: 
+        // 1. Top Spacer (takes available space)
+        // 2. Header (auto height)
+        // 3. Form (auto height)
+        // 4. Bottom Spacer (takes available space)
+        grid-template-rows: 1fr max-content max-content 1fr;
+        
+        // Adds space between Header and Form (and padding against spacers)
+        row-gap: 20px; 
+        
+        min-height: 0;
+        height: auto;
+        align-items: center; 
+    }
+
+    .perks-cta-header {
+        grid-column: 1;
+        grid-row: 2; // Lock to 2nd row
+        
+        text-align: center;
+        width: 100%;
+        padding: 0 32px;
+        margin: 0;
+        align-self: center;
+    }
+
+    .perks-cta-form {
+        grid-column: 1;
+        grid-row: 3; // Lock to 3rd row
+        
+        width: 100%;
+        max-width: 380px;
+        margin: 0 auto; // Center horizontally
+        position: static;
+    }
+
+    .perks-cta-image-wrapper {
+        display: contents;
+    }
+
+    .perks-cta-background-image {
+        // Span ALL 4 rows (from top spacer to bottom spacer)
+        grid-column: 2;
+        grid-row: 1 / -1; 
+        
+        // Your specific clamp height
+        width: 100%;
+        height: clamp(275px, 49.12px + 29.41vw, 350px); 
+        
+        position: relative;
+        top: auto; 
+        right: auto;
+        border-radius: 0 16px 16px 0;
+        clip-path: url(#cta-wavy-mask);
+        background-size: cover;
+        background-position: center;
+    }
+
+    .perks-cta-title {
+        font-size: clamp(26px, 19.98px + 0.78vw, 28px);
+        margin-bottom: 20px;
+    }
+
+    .perks-cta-list {
+        gap: 10px;
+        justify-content: center;
+    }
+}
+
+@include md-down {
+    .perks-cta-section .perks-cta-form .perks-cta-input {
+        border: 1px solid var(--border-dark);
+        border-right: none;
+    }
+    .perks-cta-section .perks-cta-form .perks-cta-input,
+    .perks-cta-form,
+    .perks-cta-button{
+       height: 44px;
+    }
+}
+
+@include sm-md {
+    .perks-cta-form {
+        bottom: clamp(30px, -20.174px + 10.453vw, 60px); 
+    }
+}
+
+/* ==========================================================================
+   Small Mobile Layout Adjustments (< 480px)
+   ========================================================================== */
+@include sm-down {
+    .perks-cta-title {
+        font-size: clamp(20px, 3.81vw + 7.81px, 24px);
+    }
+
+    .perks-cta-header {
+        padding: 24px 12px;
+        padding-top: clamp(24px, -24.29px + 15.09vw, 48px);
+    }
+    .perks-cta-section {
+        padding-bottom: calc(clamp(24px, -24.29px + 15.09vw, 48px) - 15px);
+    }
+
+    .perks-cta-list {
+        gap: 10px;
+        row-gap: 12px;
+    }
+
+    .perk-item {
+        gap: 6px;
+        padding: 5px 10px;
+        flex-grow: 1;
+        max-width: fit-content;
+    }
+
+    .perk-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .perks-cta-section .perks-cta-form .perks-cta-input,
+    .perks-cta-form,
+    .perks-cta-button {
+       height: 42px;
+    }
+
+    .perks-cta-form {
+        left: 16px;
+        right: 16px;
+        bottom: clamp(20px, -0.1258px + 6.2893vw, 30px);
+        width: calc(100% - 60px); 
+    }
+}
+
+@media (max-width: 419px) {
+    .perks-cta-list {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: max-content;
+        gap: 10px;
+    }
+    
+    .perk-item {
+        max-width: none;
+        justify-content: left;
+    }
+}
+
+/* ==========================================================================
+   THE "BROKEN OUT" LAYOUT (< 415px)
+   ========================================================================== */
+@media (max-width: 399px) {
+    .perks-cta-image-wrapper {
+        position: relative;
+        overflow: visible;
+        margin-bottom: 60px;
+        padding: 0;
+        margin-left: 15px;
+        margin-right: 15px;
+        border-radius: 16px; 
+    }
+
+    .perks-cta-background-image {
+        border-radius: 16px;
+        padding-top: 75%;
+    }
+
+    .perks-cta-form {
+        display: flex;
+        flex-direction: column;
+        gap: 17px;
+        position: absolute;
+        width: calc(100% - 45px);
+        left: 0px;
+        right: 0px;
+        bottom: -49px; 
+        height: auto !important;
+
+        &:focus-within {
+            outline: none;
+        }
+    }
+
+    .perks-cta-section .perks-cta-form .perks-cta-input {
+        max-width: 100%;
+        width: 100%;
+        height: 40px;
+        border-radius: 999px;
+        border-right: 1px solid var(--border-dark);
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+    }
+
+    .perks-cta-form .perks-cta-button {
+        width: 100%;
+        height: 40px;
+        border-radius: 999px ;
+        margin-inline: auto;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+}

@@ -1,0 +1,102 @@
+
+/*========================================
+* CATEGORY BANNER
+*========================================*/
+
+/* 1. Main Banner Container */
+.category-header-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  max-width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  /* --- UPDATED: Height clamp now matches the image's 32:7 aspect ratio --- */
+  height: clamp(150px, 22vw, 425px); 
+  margin-bottom: 120px;
+
+  /* --- Background properties applied directly --- */
+  background-image: var(--banner-bg-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+/* 
+ * 2. REMOVED: The ::after pseudo-element is no longer needed.
+ * The .hero-banner-wave-image-container and .hero-banner-wave-image
+ * class blocks have been completely deleted.
+*/
+
+/* 3. Inner Content Wrapper */
+.category-header-banner .category-header-content {
+  position: relative;
+  z-index: 2; /* Still needs a z-index, but doesn't need to be above a wave. */
+  @include gutter;
+}
+
+/* 4. Text Styling */
+.category-header-banner .category-title {
+  font-size: clamp(3rem, 4vw, 4.5rem); /* Slightly increased size */
+  font-weight: 850;
+  letter-spacing: 2px;
+  color: #ffffff; /* --- CHANGED: Text color is now white --- */
+  margin: 0;
+  line-height: 1.1;
+  /* --- NEW: Text shadow for readability on complex backgrounds --- */
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+  opacity: 1;
+}
+
+
+/*========================================
+* CATEGORY BANNER — Mobile & Tablet (≤921px)
+*========================================*/
+@include lg-down {
+
+  .category-header-banner .category-header-content {
+    padding: 0 32px;
+    max-width: 60%; /* Allow a bit more width on tablets */
+  }
+
+  .category-header-banner .category-title {
+    font-size: 48px;
+    font-weight: 850;
+    line-height: 1.2;
+    /* --- REMOVED: Old white text shadow is redundant --- */
+    word-wrap: normal;
+    width: 100%;
+  }
+}
+
+/* tablet only */
+@include md-lg {
+  .category-header-banner {
+    /* --- UPDATED: Height clamp adjusted for tablets --- */
+    height: clamp(180px, 22vw, 400px);
+  }
+}
+
+/* mobile only */
+@include md-down {
+  /* 1. Main Banner Container */
+  .category-header-banner {
+    /* --- UPDATED: Height clamp adjusted for mobile --- */
+    height: clamp(150px, 50vw, 250px); /* Uses a taller aspect ratio on narrow screens */
+    margin-bottom: 24px;
+    align-items: flex-start; /* Align text to the top on mobile */
+  }
+  
+  .category-header-banner .category-header-content {
+    max-width: 100%; /* Allow text to be full width on mobile */
+    padding-top: 24px;
+  }
+  
+  .category-header-banner .category-title {
+    font-size: 32px;
+    letter-spacing: normal;
+    font-weight: 850;
+    text-align: center;
+  }
+}

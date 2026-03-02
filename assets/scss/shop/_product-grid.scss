@@ -1,0 +1,94 @@
+// assets/scss/shop/_product-grid.scss VERSION 1.2
+// DESCRIPTION: Styles for the WooCommerce product grid layout, updated for 2/3 column responsive layout.
+
+.woocommerce-notices-wrapper:empty {
+    display: none;
+}
+
+// --- Main Product Grid Layout ---
+// Add relative positioning here so the Desktop Loader can be absolute within it
+.shop-content-wrapper {
+    position: relative;
+}
+
+ul.products {
+    list-style: none;
+    margin: 0 0 40px 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+
+    // Mobile-first: Default to 2 columns for all viewports up to the 'xl' breakpoint.
+    grid-template-columns: repeat(2, 1fr);
+
+    @include md {
+        // Increase the gap on tablet and larger screens for better spacing.
+        gap: 32px;
+    }
+
+    @include lg {
+        // Further increase the gap on larger screens.
+        gap: 40px;
+    }
+
+    @include xl {
+        // Switch to 3 columns at the 'xl' breakpoint (1280px) and above.
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.load-more-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // Using the fluid variable we defined in ajax-effects (or simple override there)
+    // but primarily handled in _ajax-effects.scss
+}
+
+.no-products-found-message a {
+    all: unset;
+    color: #000;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.no-products-found-wrapper img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.open-filter-link.btn-style {
+    display: inline-block;
+    margin: 0.75rem 0;
+    padding: 0.6rem 1.2rem;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.no-products-found-wrapper {
+    grid-column: 1/-1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.svg-illustration svg {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    padding-top: 50px;
+}

@@ -1,0 +1,237 @@
+// assets/scss/shop/_shop-header.scss VERSION 2.1 (CORRECTED)
+// DESCRIPTION: Styles for the header controls above the product grid, including the filter toggle and custom sort dropdown.
+
+/* --- Main Header Row Layout --- */
+.shop-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0;
+    height: fit-content;
+}
+
+.shop-header-row .header-right,
+.shop-header-row .header-left {
+    justify-content: center;
+}
+
+/* --- Left Side: Filter Button Styling --- */
+.header-left .filter-toggle-btn {
+    background: none;
+    color: var(--text);
+    padding: 0;
+    height: auto;
+    line-height: normal;
+    border: none; // Resetting border for consistency
+    cursor: pointer; // Ensuring it's clickable
+    display: inline-flex; // From original styles
+    align-items: center; // From original styles
+}
+
+.header-left .filter-toggle-btn svg {
+    filter: brightness(0);
+    margin-right: 10px;
+    width: 19px; // From original .filter-sort-icon
+    height: 19px; // From original .filter-sort-icon
+}
+
+/* --- Right Side: Custom Dropdown Styling --- */
+.header-right .custom-woocommerce-ordering {
+    position: relative;
+}
+
+/* The main trigger button */
+.header-right .custom-select-trigger {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    height: fit-content;
+}
+
+/* "Sort by:" label */
+.header-right .custom-select-trigger .sort-by-label {
+    font-size: 15px;
+    font-weight: 750;
+    color: var(--text, #212529);
+    letter-spacing: normal;
+}
+
+/* The selected value text that gets the underline */
+.header-right .custom-select-trigger .selected-value {
+    position: relative;
+    font-size: 15px;
+    font-weight: 450;
+    color: var(--text);
+    letter-spacing: normal;
+}
+
+.header-right .custom-select-trigger .selected-value::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: calc(100% - 1px);
+    height: 1px;
+    background-color: var(--text, #212529);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.header-right .custom-select-trigger:hover .selected-value::after {
+    transform: scaleX(1);
+}
+
+/* The chevron icon and its states */
+.header-right .custom-select-trigger .circle-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background-color: #feffff;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    margin-left: 6px;
+}
+
+.header-right .custom-select-trigger:hover .circle-chevron {
+    background-color: var(--text, #212529);
+}
+
+.header-right .custom-select-trigger .circle-chevron .chevron {
+    color: var(--text);
+    transition: color 0.3s ease;
+}
+
+.header-right .custom-select-trigger:hover .circle-chevron .chevron {
+    color: #fff;
+}
+
+.custom-woocommerce-ordering.is-open .circle-chevron {
+    transform: rotate(180deg);
+}
+
+/* The dropdown panel itself */
+.custom-select-options {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 100;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+    border: 1px solid var(--border);
+    list-style: none;
+    padding: 8px;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+.custom-woocommerce-ordering.is-open .custom-select-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* The list items (options) */
+.custom-select-options li {
+    padding: 10px 17px;
+    font-size: 16px;
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: fit-content;
+    white-space: nowrap;
+}
+
+.custom-select-options li span {
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.custom-select-options li span::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--text, #212529);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.custom-select-options li:hover span::after {
+    transform: scaleX(1);
+}
+
+/* --- Responsive Filter Button Text --- */
+.filter-toggle-btn .filter-text-mobile {
+    display: none;
+}
+
+.filter-toggle-btn .filter-text-desktop {
+    font-size: 20px;
+}
+
+
+/* --- Media Queries --- */
+
+@include lg-down {
+    .filter-toggle-btn .filter-text-mobile {
+        display: inline;
+    }
+
+    .filter-toggle-btn .filter-text-desktop {
+        display: none;
+    }
+
+    .shop-header-row {
+        padding: 0 32px;
+    }
+
+    .header-left .filter-toggle-btn {
+        background: var(--border);
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+
+        font-weight: 700;
+        font-size: 16px;
+        padding: 10px 14px; // <<< THIS LINE WAS RESTORED
+        cursor: pointer;
+        transition: all 0.2s ease;
+        position: relative;
+    }
+    
+    .header-left .filter-toggle-btn:active {
+        background-color: #f6fff8;
+        transform: translateY(1px);
+    }
+}
+
+@include md-down {
+    .shop-header-row {
+        padding: 0 15px;
+    }
+}
+
+@include lg {
+    .shop-sort-controls,
+    #close-filter-button {
+        display: none;
+    }
+}
+

@@ -1,0 +1,9 @@
+// assets/scss/single-product.scss
+@import 'global/breakpoints';
+@import 'global/mixins';
+@import 'components/single-product';
+@import 'components/swiper'; // For the product gallery on single product
+@import 'components/sticky-cart';
+@import 'components/reviews';
+@import 'components/faqs';
+// ... other single product-specific styles

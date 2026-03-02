@@ -1,0 +1,40 @@
+// assets/scss/shop.scss VERSION 2.0 - Main Shop Stylesheet 
+// DESCRIPTION: This file imports all the partials related to the main shop/archive page.
+
+@import 'global/breakpoints';
+
+@import 'global/mixins';
+
+// Core layout and base styles for the shop page.
+@import 'shop/shop-layout';
+
+// shop / category banner
+@import 'shop/category-header-banner';
+
+// "Shop by Category" filter section.
+@import 'shop/hero-category-swiper';
+
+// "Trending This Week" featured product section.
+@import 'shop/featured-product-hero';
+
+// Header section above the product grid (Filter/Sort toggles).
+@import 'shop/header-row';
+
+// Sidebar styles for filtering and sorting (mobile and desktop).
+@import 'shop/filters';
+
+// Styles for the main product grid.
+@import 'shop/product-grid';
+
+// Styles for the  product cards.
+@import 'shop/product';
+
+// AJAX loading indicators and fade transitions.
+@import 'shop/ajax-effects';
+
+// "Our Promise to You" & "Unlock Savings & Pet Perks" CTA sections.
+@import 'global/trust-section';
+@import 'global/email-signup';
+
+
+

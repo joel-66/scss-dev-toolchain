@@ -1,0 +1,387 @@
+// assets/scss/shop/_product.scss VERSION 1.3
+// DESCRIPTION: Styles for individual WooCommerce product cards (`li.product`) and their components.
+
+/* --- WooCommerce Legacy Style Reset V2 --- */
+// This block uses high specificity with an attribute selector to override ALL
+// default WooCommerce float/width styles, including the column-specific
+// selectors that were still winning. This allows our CSS Grid to take control.
+// styles and the obsolete clearfix hack, allowing our CSS Grid to take control.
+.woocommerce ul.products[class*="columns-"] {
+    // Disable the legacy clearfix pseudo-elements, as they are not needed for CSS Grid.
+    &::before,
+    &::after {
+        content: none;
+    }
+}
+.woocommerce ul.products[class*="columns-"] li.product,
+.woocommerce-page ul.products[class*="columns-"] li.product {
+    width: auto;
+    float: none;
+    margin: 0;
+}
+
+// Also reset the float-clearing properties on specific items
+.woocommerce ul.products li.first,
+.woocommerce-page ul.products li.first {
+    clear: none;
+}
+
+
+// --- Individual Product Card Styles ---
+.woocommerce ul.products[class*="columns-"] li.product,
+.woocommerce-page ul.products[class*="columns-"] li.product  {
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: #fff;
+    padding: 10px;
+}
+
+.product-thumbnail-wrap {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.attachment-woocommerce_thumbnail {
+    transition: opacity 0.175s ease-in-out;
+    display: block;
+}
+
+.custom-rating {
+    margin-bottom: 6px;
+}
+
+.custom-rating .woocommerce-loop-rating {
+    display: flex;
+    align-items: center;
+}
+
+.custom-rating span.rating-count {
+    font-size: 10px;
+    padding-bottom: 0.5px;
+}
+
+.custom-rating span.rating-text {
+    margin-left: 8px;
+}
+
+.custom-rating span.rating-text,
+.custom-rating span.rating-count {
+    font-size: 10px;
+    font-weight: 375;
+    letter-spacing: 0.1px;
+    color: var(--text);
+    line-height: normal;
+}
+
+.custom-title-rating .custom-rating {
+    margin-bottom: 4px;
+    font-size: 12px;
+}
+
+.product-attribute.attr-type--highlight {
+    font-weight: 400;
+}
+
+.product-attributes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.product-badge {
+    font-family: "Figtree", sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: normal;
+    padding: 1.5px 5px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.24px;
+    border: 1px solid transparent;
+    opacity: 1;
+}
+
+.product-badge.badge-as-seen-on-tiktok {
+    border-radius: 999px;
+    color: #fff;
+    background: linear-gradient(90deg, #ff2d55 0%, #00f2ea 100%);
+    border: none;
+    font-weight: 650;
+}
+
+.product-badge.badge-type--informational {
+    border-color: var(--border);
+}
+
+.product-badge.badge-type--exclusive,
+.product-badge.badge-type--informational {
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+.product-badge.badge-type--highlight {
+    border-radius: 999px;
+    background: rgba(255, 122, 0, 0.85);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    letter-spacing: 0.24px;
+    font-weight: 650;
+}
+
+.product-badges-container {
+    position: absolute;
+    display: flex;
+    gap: 4px;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+}
+
+.product-subtitle {
+    font-size: 10px;
+}
+
+.variation-swatch .fa-check {
+    display: none;
+}
+
+.variation-swatch .swatch-color-box {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    transition: transform 0.2s ease;
+}
+
+.variation-swatch-wrapper {
+    display: inline-flex;
+}
+
+.variation-swatch-wrapper.selected {
+    outline: none !important;
+}
+
+.variation-swatch-wrapper.selected .fa-check {
+    display: block;
+    color: #f00;
+    font-size: 13px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.variation-swatch-wrapper.selected .swatch-color-box {
+    outline: 1px solid var(--text);
+    outline-offset: 2px;
+    transform: scale(1);
+}
+
+.variation-swatch:hover .swatch-color-box {
+    transform: scale(1.05);
+}
+
+.woocommerce ul.products li.product .product-card-top {
+    position: relative;
+}
+
+.woocommerce-loop-product__title a {
+    font-size: 14px;
+    font-weight: 850;
+    color: var(--text);
+    letter-spacing: 0.1px;
+}
+
+li.product .product-subtitle {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: normal;
+    padding-top: 10px;
+}
+
+li.product span.new-price {
+    font-family: "Figtree", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    color: var(--text);
+}
+
+.variation-swatch-container {
+    display: flex;
+    gap: 12px;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin: 5px;
+}
+
+li.product .custom-title-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.product-attribute {
+    padding: 4px;
+    font-size: 10px;
+    font-weight: 400;
+    background-color: #fff;
+    border: var(--border-main);
+    border-radius: 15px;
+    line-height: 1;
+    line-height: normal;
+    font-style: normal;
+    letter-spacing: 0.24px;
+}
+
+
+@include lg {
+    li.product {
+        overflow: hidden;
+    }
+
+    .variation-swatch-container {
+        margin: 10px;
+        margin-right: 0;
+    }
+
+    .product-attribute {
+        color: rgb(28 28 30);
+    }
+}
+
+@include md-down {
+    .shop-content-wrapper li.product .product-card-actions {
+        display: none;
+    }
+    .product-attributes-container {
+        margin-top: auto;
+    }
+}
+
+
+@include md {
+    .woocommerce ul.products[class*="columns-"] li.product,
+    .woocommerce-page ul.products[class*="columns-"] li.product {
+        display: grid;
+        height: 100%;
+        grid-template-rows: auto auto auto auto 1fr auto;
+        grid-template-columns: auto 1fr;
+        column-gap: 10px;
+        grid-template-areas: "image    image" "title    title" "subtitle subtitle" "price    swatches" "tags     tags" "button   button";
+    }
+
+    li.product .product-thumbnail-wrap {
+        grid-area: image;
+        aspect-ratio: 1/1;
+        overflow: hidden;
+    }
+
+    li.product .product-thumbnail-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    li.product .custom-title-rating {
+        grid-area: title;
+    }
+
+    li.product .product-subtitle {
+        grid-area: subtitle;
+        font-size: 15px;
+    }
+
+    li.product .new-price,
+    li.product .price {
+        grid-area: price;
+    }
+
+    li.product .variation-swatch-container {
+        grid-area: swatches;
+        justify-self: end;
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    li.product .product-attributes-container {
+        grid-area: tags;
+        padding: 20px 0 0;
+        align-self: end;
+    }
+
+    li.product .product-card-actions {
+        grid-area: button;
+        margin-top: 0;
+        padding-top: 20px;
+    }
+
+    li.product .product-card-actions .button-ghost {
+        width: 100%;
+    }
+
+    .woocommerce-page ul.products li.product .woocommerce-loop-product__title {
+        margin: 0;
+    }
+
+    li.product .product-attributes-container .product-attribute {
+        padding: 6px 10px;
+        font-size: 12px;
+        border-radius: 100px;
+    }
+
+    .product-badges-container {
+        top: 20px;
+        left: 20px;
+    }
+
+    .product-badge {
+        padding: 7px 10px;
+        font-size: 12px;
+        border-radius: 999px;
+    }
+
+    .product-badge.badge-type--informational {
+        border-radius: 8px;
+    }
+}
+
+@include md-lg {
+    .woocommerce ul.products[class*="columns-"] li.product,
+    .woocommerce-page ul.products[class*="columns-"] li.product {
+        padding: 20px;
+    }
+
+    .product-badges-container {
+        top: 15px;
+        left: 15px;
+    }
+
+    .woocommerce-page ul.products li.product .woocommerce-loop-product__title a {
+        font-size: 18px;
+    }
+
+    li.product .new-price,
+    li.product .price {
+        font-size: 18px;
+    }
+}
+
+
+@include md {
+    .woocommerce ul.products[class*="columns-"] li.product,
+    .woocommerce-page ul.products[class*="columns-"] li.product{
+        padding: 20px;
+    }
+}

@@ -1,0 +1,118 @@
+// _breakpoints.scss
+
+// 1. Define your breakpoints in a single map.
+// These keys are your friendly names (e.g., 'tablet', 'desktop').
+// The values correspond to the theme's major layout shifts.
+//$breakpoints: (
+//  "desktop-xl": 1400px,
+//  "desktop":    922px,
+//  "tablet":     545px,
+//  "mobile":     421px, // Range is 421px-544px
+//  "mobile-sm":  0      // Range is 0-420px
+//);
+
+// old breakpoints above commented out for reference
+
+$breakpoints: (
+  "xs": 0,        // default mobile
+  "sm": 480px,    // big phones
+  "md": 768px,    // tablets
+  "lg": 1024px,   // laptops
+  "xl": 1280px,   // desktop layout
+  "2xl": 1536px   // ultrawide
+);
+
+
+@mixin xs { @include up("xs") { @content; } }
+@mixin sm { @include up("sm") { @content; } }
+@mixin md { @include up("md") { @content; } }
+@mixin lg { @include up("lg") { @content; } }
+@mixin xl { @include up("xl") { @content; } }
+@mixin xxl { @include up("2xl") { @content; } } // <-- renamed correctly
+
+// Down aliases (max-width)
+@mixin xs-down { @include down("xs")  { @content; } }
+@mixin sm-down { @include down("sm")  { @content; } }
+@mixin md-down { @include down("md")  { @content; } }
+@mixin lg-down { @include down("lg")  { @content; } }
+@mixin xl-down { @include down("xl")  { @content; } }
+@mixin xxl-down { @include down("2xl") { @content; } } // <-- renamed correctly
+
+
+// ---------------------------------------------------------------------------
+// Range Aliases (Between Two Breakpoints)
+// ---------------------------------------------------------------------------
+
+@mixin sm-md  { @include between("sm", "md")  { @content; } }
+@mixin sm-lg  { @include between("sm", "lg")  { @content; } }
+@mixin sm-xl  { @include between("sm", "xl")  { @content; } }
+
+@mixin md-lg  { @include between("md", "lg")  { @content; } }
+@mixin md-xl  { @include between("md", "xl")  { @content; } }
+@mixin md-2xl { @include between("md", "2xl") { @content; } }
+
+@mixin lg-xl  { @include between("lg", "xl")  { @content; } }
+@mixin lg-2xl { @include between("lg", "2xl") { @content; } }
+
+@mixin xl-2xl { @include between("xl", "2xl") { @content; } }
+
+
+// ============================================================================
+// Media Query Mixins
+// ============================================================================
+
+// Mobile-first upwards (min-width)
+@mixin up($size) {
+  @if map-has-key($breakpoints, $size) {
+    @media (min-width: map-get($breakpoints, $size)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint `#{$size}` not found in $breakpoints map.";
+  }
+}
+
+// Desktop-downwards (max-width)
+@mixin down($size) {
+  @if map-has-key($breakpoints, $size) {
+    $max: map-get($breakpoints, $size) - 1px;
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint `#{$size}` not found in $breakpoints map.";
+  }
+}
+
+// Between two breakpoints (non-overlapping)
+@mixin between($lower, $upper) {
+  @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+    $min: map-get($breakpoints, $lower);
+    $max: map-get($breakpoints, $upper) - 1px;
+
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @warn "One of the breakpoints `#{$lower}` or `#{$upper}` was not found.";
+  }
+}
+
+// ============================================================================
+// Utility Breakpoints (Special Cases)
+// You keep these when layout condition depends on component behavior,
+// not global breakpoints.
+// ============================================================================
+
+// Tablet range where filters should convert into drawer UI
+@mixin large-tablet {
+  @media (min-width: 700px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+
+
+
+
+

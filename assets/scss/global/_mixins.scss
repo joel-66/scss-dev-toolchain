@@ -1,0 +1,14 @@
+// _mixins.scss
+
+@mixin gutter($max: 1720px, $gutter: 52px) {
+  $breakpoint: calc(#{$max} + (#{$gutter} * 2));
+
+  width: 100%;
+  max-width: $max;
+  margin-inline: auto;
+  padding-inline: clamp(
+    0px,
+    calc((#{$breakpoint} - 100vw) / 2),
+    $gutter
+  );
+}

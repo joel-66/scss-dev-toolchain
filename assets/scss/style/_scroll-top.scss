@@ -1,0 +1,50 @@
+/*===================================
+*  SCROLL-TOP
+* ===================================
+*/
+#custom-sticky-add-to-cart.is-active {
+    /* JS creates --sticky-cart-height, which is used below. */
+    box-sizing: border-box;
+}
+
+#ast-scroll-top {
+    bottom: calc(20px + var(--sticky-cart-height, 0px));
+    transition: bottom 0.3s ease-in-out !important;
+    background-color: #fff !important;
+    color: var(--text) !important;
+    border-radius: 50% !important;
+    border: 1px solid #eee !important;
+    width: 48px !important;
+    height: 48px !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    position: fixed;
+    background: linear-gradient(
+        to top,
+        #c7e0ff var(--scroll, 0%),
+        #fff var(--scroll, 0%)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: 0.3s;
+
+    .ast-icon {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 100% !important;
+        position: relative;
+        z-index: 1;
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+    }
+}
+
+body {
+    padding-bottom: var(--sticky-cart-height, 0px);
+    transition: padding-bottom 0.3s ease-in-out;
+}

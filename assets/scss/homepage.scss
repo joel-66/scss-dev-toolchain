@@ -1,0 +1,20 @@
+// assets/scss/homepage.scss VERSION 2.1 - homepage Stylesheet 
+// DESCRIPTION: This file imports all the partials related to the homepage.
+
+// --- GLOBAL DEPS ---
+@import 'global/breakpoints';
+@import 'global/mixins';
+
+// --- HOMEPAGE SECTIONS ---
+// These are imported in the order they appear on the page.
+@import 'homepage/hero';
+@import 'homepage/trust-bar';
+@import 'homepage/trending-products';
+@import 'homepage/category-features';
+@import 'homepage/promise';
+@import 'homepage/email-signup';
+@import 'homepage/customer-reviews';
+
+
+@import 'global/email-signup';
+@import 'global/trust-section';
